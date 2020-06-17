@@ -1,13 +1,113 @@
-body {
+html, body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  height: 100%;
+  min-width: 1000px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+div {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+a {
+  list-style: none;
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0C1731;
+}
+.content {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+/* flex */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.flex2 {
+  flex: 2;
+  min-height: 0;
+  min-width: 0;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+/* 字体大小 */
+@media screen and (max-width: 1200px) {
+  .font-head {
+    font-size: 18px;
+  }
+  .font-nav {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .font-head {
+    font-size: 20px;
+  }
+  .font-nav {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .font-head {
+    font-size: 22px;
+  }
+  .font-nav {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .font-head {
+    font-size: 26px;
+  }
+  .font-nav {
+    font-size: 24px;
+  }
 }

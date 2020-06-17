@@ -1,17 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Home from "./views/Home";
+import DataView from "./views/DataView"
+import StatusView from "./views/StatusView"
+import SecurityView from "./views/SecurityView"
+
+import Nav from "./components/nav";
+
+class Index extends React.Component {
+  render() {
+    return (
+      <div className="home">
+        <Nav />
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  <Router>
+    <Index />
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/data" component={DataView} />
+      <Route path="/status" component={StatusView} />
+      <Route path="/security" component={SecurityView} />
+    </Switch>
+  </Router>
+  , document.getElementById('root'))
