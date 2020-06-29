@@ -1,0 +1,369 @@
+{
+  "success": true,
+  "data": {
+    "survey": {
+      "title": "",
+      "data": [
+        {
+          "name": "SOH",
+          "value": "88.8%"
+        },
+        {
+          "name": "SOC",
+          "value": "88.8%"
+        },
+        {
+          "name": "状态",
+          "value": "放电"
+        }
+      ]
+    },
+    "load": {
+      "title": "基站电气负载信息",
+      "data": [
+        {
+          "name": "交流输入电压",
+          "value": "233.3V"
+        },
+        {
+          "name": "交流输入功率",
+          "value": "1.333KW"
+        }
+      ]
+    },
+    "percent": {
+      "title": "[ xxxxx ] 基站电气安全指数",
+      "center": {
+        "name": "安全指数",
+        "value": "100%"
+      },
+      "data": [
+        {
+          "name": "器件寿命",
+          "value": "100%"
+        },
+        {
+          "name": "设备寿命",
+          "value": "100%"
+        },
+        {
+          "name": "电池SOH",
+          "value": "100%"
+        },
+        {
+          "name": "电池循环次数",
+          "value": "100%"
+        },
+        {
+          "name": "电池工作时长",
+          "value": "100%"
+        }
+      ]
+    },
+    "weather": {
+      "title": "基站天气",
+      "data": {
+        "cityid": "101210101",
+        "date": "2020-06-29",
+        "week": "1",
+        "update_time": "2020-06-29 07:15:41",
+        "tem1": "31",
+        "tem2": "23",
+        "win_meter": "小于12km/h",
+        "visibility": "15.72km",
+        "pressure": "994",
+        "air_tips": "空气很好，可以外出活动，呼吸新鲜空气，拥抱大自然！",
+        "city": "杭州",
+        "cityEn": "hangzhou",
+        "country": "中国",
+        "countryEn": "China",
+        "tem": "27",
+        "wea": "雨",
+        "wea_img": "yu",
+        "win": "西南风",
+        "win_speed": "1级",
+        "humidity": "82%",
+        "air": "31",
+        "air_level": "优"
+      }
+    },
+    "environment": {
+      "title": "基站环境",
+      "data": [
+        {
+          "name": "环境温度",
+          "value": "33.3℃"
+        },
+        {
+          "name": "环境湿度",
+          "value": "88.8%"
+        }
+      ]
+    },
+    "vol": {
+      "title": "电压及位置",
+      "data": [
+        {
+          "name": "最高",
+          "value": "3.33V",
+          "position": "12号"
+        },
+        {
+          "name": "最低",
+          "value": "3.33V",
+          "position": "12号"
+        }
+      ]
+    },
+    "temperature": {
+      "title": "温度及位置",
+      "data": [
+        {
+          "name": "最高",
+          "value": "34℃",
+          "position": "12号"
+        },
+        {
+          "name": "最低",
+          "value": "34℃",
+          "position": "12号"
+        }
+      ]
+    },
+    "MOSTemperature": {
+      "title": "MOS温度及位置",
+      "data": [
+        {
+          "name": "最高",
+          "value": "34℃",
+          "position": "12号"
+        },
+        {
+          "name": "最低",
+          "value": "34℃",
+          "position": "12号"
+        }
+      ]
+    },
+    "electricity": {
+      "title": "模组电流及位置",
+      "data": [
+        {
+          "name": "最高",
+          "value": "1.234A",
+          "position": "12号"
+        },
+        {
+          "name": "最低",
+          "value": "1.234A",
+          "position": "12号"
+        }
+      ]
+    },
+    "singleBattery": {
+      "title": "电池单体电压",
+      "data": [
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        },
+        {
+          "name": "1-1",
+          "value": "3.123"
+        }
+      ]
+    }
+  }
+}

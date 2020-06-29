@@ -7,9 +7,22 @@ import DataView from "./views/DataView"
 import StatusView from "./views/StatusView"
 import SecurityView from "./views/SecurityView"
 
+import './http/http'
+
+
 import Nav from "./components/nav";
 
 class Index extends React.Component {
+  getDevice () {
+    this.get("http://sf28090049.wicp.vip:8082/conn/api/Statement/GetDeviceNames").then(res => {
+      console.log(res)
+    })
+  }
+
+  componentDidMount() {
+    this.getDevice()
+  }
+
   render() {
     return (
       <div className="home">

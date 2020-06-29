@@ -1,0 +1,39 @@
+.info {
+  color: #46a6b5;
+}
+
+.info-item {
+
+}
+
+.info-item .value,
+.info-item .position {
+  color: #f7931f;
+}
+
+.title {
+  color: #46a6b5;
+}
+
+.status-name {
+  color: #46a6b5;
+  text-align: center;
+}
+
+.status-value {
+  color: #f7931f;
+  text-align: center;
+}
+
+.longest-title {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 1.5%;
+}
+
+.battery {
+  width: 4.75%;
+  height: calc(50% - 10px);
+  margin-top: 10px;
+}

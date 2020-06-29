@@ -1,0 +1,191 @@
+import React from "react";
+
+class LongestBorder extends React.Component {
+  render() {
+    let opacity = 0.4
+    if (this.props.opacity) {
+      opacity = Number(this.props.opacity)
+    }
+    return (
+      <div className="svg-box">
+        <div className="svg-border">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="100%"
+            height="100%"
+            viewBox="0 0 1660 500"
+            enableBackground="new 0 0 1660 500"
+            xmlSpace="preserve"
+            preserveAspectRatio="none"
+          >
+        <g opacity={opacity}>
+          <path
+            fill="none"
+            stroke="#46A6B5"
+            strokeMiterlimit="10"
+            d="M101.593,15.827L233.676,15.827"
+          ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M5.342,19.049L1631.922,19.049"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M5.343,471.93L5.343,18.605"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M28.45,495.654L1655.844,495.654"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M1655.383,495.654L1655.383,42.307"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M1631.508,19.049L1655.383,42.769"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M5.075,471.93L29.002,495.855"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M101.593,13.004L219.427,13.004"
+            ></path>
+            <path
+              fill="none"
+              stroke="#46A6B5"
+              strokeMiterlimit="10"
+              d="M101.593,10.292L205.009,10.292"
+            ></path>
+        </g>
+          <g opacity={opacity}>
+          <path
+            fill="#46A6B5"
+            d="M11.92,16.168L18.073,16.168L14.401,8.292L8.248,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M19.304,16.168L25.458,16.168L21.785,8.292L15.631,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M26.688,16.168L32.84,16.168L29.168,8.292L23.015,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M34.072,16.168L40.225,16.168L36.552,8.292L30.399,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M41.456,16.168L47.608,16.168L43.936,8.292L37.783,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M48.838,16.168L54.993,16.168L51.319,8.292L45.167,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M56.223,16.168L62.375,16.168L58.703,8.292L52.549,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M63.606,16.168L69.76,16.168L66.086,8.292L59.934,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M70.99,16.168L77.143,16.168L73.47,8.292L67.317,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M78.374,16.168L84.527,16.168L80.854,8.292L74.701,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M85.757,16.168L91.911,16.168L88.238,8.292L82.084,8.292Z"
+          ></path>
+          <path
+            fill="#46A6B5"
+            d="M93.141,16.168L99.294,16.168L95.622,8.292L89.468,8.292Z"
+          ></path>
+          <g>
+            <path
+              fill="#46A6B5"
+              d="M1559.684,493.437L1565.836,493.437L1562.164,485.56L1556.01,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1567.066,493.437L1573.221,493.437L1569.547,485.56L1563.395,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1574.451,493.437L1580.604,493.437L1576.932,485.56L1570.777,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1581.834,493.437L1587.988,493.437L1584.314,485.56L1578.162,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1589.219,493.437L1595.371,493.437L1591.699,485.56L1585.545,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1596.602,493.437L1602.756,493.437L1599.082,485.56L1592.93,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1603.986,493.437L1610.139,493.437L1606.465,485.56L1600.313,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1611.369,493.437L1617.523,493.437L1613.85,485.56L1607.697,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1618.752,493.437L1624.906,493.437L1621.232,485.56L1615.08,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1626.137,493.437L1632.289,493.437L1628.617,485.56L1622.463,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1633.52,493.437L1639.674,493.437L1636,485.56L1629.848,485.56Z"
+            ></path>
+            <path
+              fill="#46A6B5"
+              d="M1640.904,493.437L1647.057,493.437L1643.385,485.56L1637.23,485.56Z"
+            ></path>
+          </g>
+        </g>
+      </svg>
+        </div>
+        <div className="content-box">
+          {this.props.children}
+        </div>
+      </div>
+    )
+  }
+}
+
+export default LongestBorder

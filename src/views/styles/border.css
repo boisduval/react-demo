@@ -1,0 +1,35 @@
+.svg-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.svg-box {
+  position: relative;
+  height: 100%;
+  z-index: 1;
+}
+
+.content-box {
+  height: 100%;
+  z-index: 999;
+}
+
+.svg-title {
+  color: #46a6b5;
+  position: absolute;
+  /*font-size: 12px;*/
+  top: -6px;
+  left: 9%;
+}
+
+.svg-title-right {
+  color: #46a6b5;
+  position: absolute;
+  /*font-size: 12px;*/
+  top: -6px;
+  right: 9%;
+}

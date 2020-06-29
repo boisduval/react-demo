@@ -8,7 +8,7 @@ class Nav extends React.Component {
     this.state = {
       leftNav: [
         {
-          name: "首页",
+          name: "GIS 总览",
           path: "/"
         },
         {
@@ -26,7 +26,8 @@ class Nav extends React.Component {
           path: "/security"
         }
       ],
-      title: "数据监控中心"
+      title: "数据监控中心",
+      company: "浙江衡睿科技有限公司"
     }
   }
 
@@ -46,7 +47,7 @@ class Nav extends React.Component {
             <NavItem arr={this.state.rightNav}/>
           </ul>
         </nav>
-        <Company />
+        <Company name={this.state.company}/>
       </div>
     )
   }
@@ -74,7 +75,7 @@ class Company extends React.Component {
       <div id="company" className="flex-row flex-center">
         <img src={require("../img/logo.png")} alt="公司logo"/>
         <p>
-          浙江衡睿科技有限公司
+          {this.props.name}
         </p>
       </div>
     )

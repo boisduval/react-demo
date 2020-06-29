@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  min-width: 1000px;
+  min-width: 1200px;
 }
 
 div {
@@ -42,6 +42,8 @@ a:visited {
   flex: 1;
   min-height: 0;
   min-width: 0;
+  margin: 0 10px;
+  padding-top: 10px;
 }
 /* flex */
 .flex-row {
@@ -65,6 +67,30 @@ a:visited {
   min-width: 0;
 }
 
+.flex3 {
+  flex: 3;
+  min-height: 0;
+  min-width: 0;
+}
+
+.flex5 {
+  flex: 5;
+  min-height: 0;
+  min-width: 0;
+}
+
+.flex6 {
+  flex: 6;
+  min-height: 0;
+  min-width: 0;
+}
+
+.flex7 {
+  flex: 7;
+  min-height: 0;
+  min-width: 0;
+}
+
 .flex-center {
   justify-content: center;
   align-items: center;
@@ -78,6 +104,27 @@ a:visited {
   justify-content: flex-end;
 }
 
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.flex-space-around {
+  justify-content: space-around;
+}
+
+.flex-center-end {
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.charts {
+  height: 100%;
+}
+
 /* 字体大小 */
 @media screen and (max-width: 1200px) {
   .font-head {
@@ -85,6 +132,18 @@ a:visited {
   }
   .font-nav {
     font-size: 16px;
+  }
+  .font-xs {
+    font-size: 12px;
+  }
+  .font-small {
+    font-size: 12px;
+  }
+  .font-medium {
+    font-size: 14px;
+  }
+  html,body {
+    min-height: 600px;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -94,6 +153,18 @@ a:visited {
   .font-nav {
     font-size: 18px;
   }
+  .font-xs {
+    font-size: 12px;
+  }
+  .font-small {
+    font-size: 12px;
+  }
+  .font-medium {
+    font-size: 14px;
+  }
+  html,body {
+    min-height: 650px;
+  }
 }
 @media screen and (min-width: 1400px) {
   .font-head {
@@ -102,12 +173,53 @@ a:visited {
   .font-nav {
     font-size: 20px;
   }
+  .font-xs {
+    font-size: 12px;
+  }
+  .font-small {
+    font-size: 14px;
+  }
+  .font-medium {
+    font-size: 16px;
+  }
+  html,body {
+    min-height: 750px;
+  }
 }
 @media screen and (min-width: 1600px) {
   .font-head {
     font-size: 26px;
   }
   .font-nav {
-    font-size: 24px;
+    font-size: 22px;
+  }
+  .font-xs {
+    font-size: 12px;
+  }
+  .font-small {
+    font-size: 14px;
+  }
+  .font-medium {
+    font-size: 16px;
+  }
+  html,body {
+    min-height: 800px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .font-xs {
+    font-size: 14px;
+  }
+  .font-nav {
+    font-size: 22px;
+  }
+  .font-small {
+    font-size: 16px;
+  }
+  .font-medium {
+    font-size: 18px;
+  }
+  html,body {
+    min-height: 900px;
   }
 }
