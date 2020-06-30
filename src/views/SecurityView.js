@@ -604,7 +604,6 @@ class TopItem extends React.Component {
     const color = this.props.color
     const data = this.props.data
     const icon = this.props.icon
-    console.log(icon)
     return (
       <div className="flex top-item flex-row" style={{backgroundColor: color}}>
         <div className="flex icon" style={icon}/>

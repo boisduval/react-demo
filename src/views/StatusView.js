@@ -14,6 +14,7 @@ import LongerBackground from "../components/border/status/longerBackground";
 import Battery from "../components/battery";
 
 import {Scrollbars} from 'react-custom-scrollbars';
+import InfiniteScroll from 'react-infinite-scroller';
 
 class StatusView extends React.Component {
   constructor(props) {
@@ -28,13 +29,50 @@ class StatusView extends React.Component {
       temperature: null,
       MOSTemperature: null,
       electricity: null,
-      singleBattery: null
+      singleBattery: null,
+      loading: true,
+      hasMore: true,
+      pageNum: 1,
+      pageSize: 84,
+      total: 0,
+      data: [],
     }
   }
 
-  // componentDidMount() {
-  //   this.getData()
-  // }
+  getMore() {
+    if (this.state.total === this.state.data.length) {
+      this.setState({
+        hasMore: false
+      })
+      return;
+    }
+    this.setState({
+      // loading: true,
+      pageNum: this.state.pageNum + 1
+    }, () => {
+      this.initData(); //请求数据接口
+    });
+  }
+
+  initData() {
+    this.setState({
+      loading: true
+    })
+    const data = this.state.singleBattery.data
+    if (data) {
+      let list = data.slice(
+        (this.state.pageNum - 1) * this.state.pageSize,
+        this.state.pageNum * this.state.pageSize
+      )
+      this.setState({
+        data: [...this.state.data, ...list]
+      })
+      this.setState({
+        loading: false
+      })
+    }
+
+  }
 
   getData(params) {
     console.log(params)
@@ -70,6 +108,10 @@ class StatusView extends React.Component {
       this.setState({
         singleBattery: data.singleBattery
       })
+      this.setState({
+        total: this.state.singleBattery.data.length
+      })
+      this.initData()
     })
   }
 
@@ -84,7 +126,7 @@ class StatusView extends React.Component {
             {/* 上 */}
             <div className="flex flex-row">
               {/* 左 */}
-              <TopLeft/>
+              <TopLeft data={this.state.survey}/>
               {/* 右 */}
               <TopRight load={this.state.load} percent={this.state.percent} weather={this.state.weather}
                         environment={this.state.environment}/>
@@ -103,7 +145,17 @@ class StatusView extends React.Component {
                     </div>
                   </div>
                   {/* 右 */}
-                  <SingleBattery data={this.state.singleBattery}/>
+                  <SingleBattery
+                    data={this.state.singleBattery}
+                    loading={this.state.loading}
+                    pageNum={this.state.pageNum}
+                    pageSize={this.state.pageSize}
+                    total={this.state.total}
+                    hasMore={this.state.hasMore}
+                    list={this.state.data}
+                    getMore={this.getMore.bind(this)}
+                    initData={this.initData.bind(this)}
+                  />
                 </div>
 
               </LongestBorder>
@@ -118,11 +170,37 @@ class StatusView extends React.Component {
 
 class TopLeft extends React.Component {
   render() {
-    return (
-      <div className="flex">
-        <CommonBorder/>
-      </div>
-    )
+    const data = this.props.data || {}
+    if (data.hasOwnProperty("data")) {
+      return (
+        <div className="flex">
+          <CommonBorder>
+            <div style={{height: "100%"}} className="flex-col">
+              <div className="flex survey-img"/>
+              <div className="flex-row flex-space-around" style={{padding: "3% 10% 5%"}}>
+                {
+                  data.data.map((val, index) => {
+                    return (
+                      <div className="flex-row" key={index}>
+                        <p className="status-name font-small" style={{paddingRight: "5px"}}>
+                          {val.name}
+                        </p>
+                        <p className="status-value font-small">
+                          {val.value}
+                        </p>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          </CommonBorder>
+        </div>
+      )
+    } else {
+      return null
+    }
+
   }
 }
 
@@ -452,10 +530,17 @@ class SingleBattery extends React.Component {
                   {data.title}
                 </p>
               </div>
-              <Scrollbars style={{height: "100%", width: "100%"}}>
-                <div style={{height: "100%"}} className="flex-row flex-wrap">
+              <Scrollbars style={{height: "100%", width: "100%"}} autoHide>
+                <InfiniteScroll
+                  className="list-contents flex-row flex-wrap"
+                  initialLoad={false}
+                  pageStart={0}
+                  loadMore={this.props.getMore.bind(this)}
+                  hasMore={!this.props.loading && this.props.hasMore}
+                  useWindow={false}
+                >
                   {
-                    data.data.map((val, i) => {
+                    this.props.list.map((val, i) => {
                       return (
                         <div className="battery" key={i}>
                           <Battery name={val.name} value={val.value}/>
@@ -463,8 +548,10 @@ class SingleBattery extends React.Component {
                       )
                     })
                   }
-                </div>
+                </InfiniteScroll>
               </Scrollbars>
+              {this.props.loading ? <Loading text="加载中..."/> : ""}
+              {!this.props.hasMore ? <Loading text="没有更多了"/> : ""}
             </div>
           </LongerBackground>
         </div>
@@ -472,6 +559,19 @@ class SingleBattery extends React.Component {
     } else {
       return null
     }
+  }
+}
+
+class Loading extends React.Component {
+  render() {
+    const text = this.props.text
+    return (
+      <div className="loading">
+        <p>
+          {text}
+        </p>
+      </div>
+    )
   }
 }
 
