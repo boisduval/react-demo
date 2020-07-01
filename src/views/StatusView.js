@@ -1,8 +1,8 @@
 import React from "react";
-import "./StatusView.css"
-import "./styles/border.css"
-import "../index.css"
-import "./StatusView.css"
+import "./StatusView.css";
+import "./styles/border.css";
+import "../index.css";
+import "./StatusView.css";
 
 import DevicePicker from "../components/devicePicker";
 import CommonBorder from "../components/border/status/commonBorder";
@@ -14,8 +14,9 @@ import LongerBackground from "../components/border/status/longerBackground";
 import Battery from "../components/battery";
 import InstrumentSvg from "../components/instrument";
 
-import {Scrollbars} from 'react-custom-scrollbars';
-import InfiniteScroll from 'react-infinite-scroller';
+import { Scrollbars } from "react-custom-scrollbars";
+import InfiniteScroll from "react-infinite-scroller";
+import PercentSvg from "../components/percentSvg";
 
 class StatusView extends React.Component {
   constructor(props) {
@@ -37,83 +38,85 @@ class StatusView extends React.Component {
       pageSize: 84,
       total: 0,
       data: [],
-    }
+    };
   }
 
   getMore() {
     if (this.state.total === this.state.data.length) {
       this.setState({
-        hasMore: false
-      })
+        hasMore: false,
+      });
       return;
     }
-    this.setState({
-      // loading: true,
-      pageNum: this.state.pageNum + 1
-    }, () => {
-      this.initData(); //请求数据接口
-    });
+    this.setState(
+      {
+        // loading: true,
+        pageNum: this.state.pageNum + 1,
+      },
+      () => {
+        this.initData(); //请求数据接口
+      }
+    );
   }
 
   initData() {
     this.setState({
-      loading: true
-    })
-    const data = this.state.singleBattery.data
+      loading: true,
+    });
+    const data = this.state.singleBattery.data;
     if (data) {
       let list = data.slice(
         (this.state.pageNum - 1) * this.state.pageSize,
         this.state.pageNum * this.state.pageSize
-      )
+      );
       this.setState({
-        data: [...this.state.data, ...list]
-      })
+        data: [...this.state.data, ...list],
+      });
       this.setState({
-        loading: false
-      })
+        loading: false,
+      });
     }
-
   }
 
   getData(params) {
-    console.log(params)
-    this.get('/api/status.json').then(res => {
-      const data = res.data.data
+    console.log(params);
+    this.get("/api/status.json").then((res) => {
+      const data = res.data.data;
       this.setState({
-        survey: data.survey
-      })
+        survey: data.survey,
+      });
       this.setState({
-        load: data.load
-      })
+        load: data.load,
+      });
       this.setState({
-        percent: data.percent
-      })
+        percent: data.percent,
+      });
       this.setState({
-        weather: data.weather
-      })
+        weather: data.weather,
+      });
       this.setState({
-        environment: data.environment
-      })
+        environment: data.environment,
+      });
       this.setState({
-        vol: data.vol
-      })
+        vol: data.vol,
+      });
       this.setState({
-        temperature: data.temperature
-      })
+        temperature: data.temperature,
+      });
       this.setState({
-        MOSTemperature: data.MOSTemperature
-      })
+        MOSTemperature: data.MOSTemperature,
+      });
       this.setState({
-        electricity: data.electricity
-      })
+        electricity: data.electricity,
+      });
       this.setState({
-        singleBattery: data.singleBattery
-      })
+        singleBattery: data.singleBattery,
+      });
       this.setState({
-        total: this.state.singleBattery.data.length
-      })
-      this.initData()
-    })
+        total: this.state.singleBattery.data.length,
+      });
+      this.initData();
+    });
   }
 
   render() {
@@ -121,13 +124,13 @@ class StatusView extends React.Component {
       <div className="content flex-col">
         <div className="flex flex-row">
           <div className="flex">
-            <DevicePicker getData={this.getData.bind(this)}/>
+            <DevicePicker getData={this.getData.bind(this)} />
           </div>
           <div className="flex7 flex-col">
             {/* 上 */}
             <div className="flex flex-row">
               {/* 左 */}
-              <TopLeft data={this.state.survey}/>
+              <TopLeft data={this.state.survey} />
               {/* 右 */}
               <TopRight
                 load={this.state.load}
@@ -139,14 +142,23 @@ class StatusView extends React.Component {
             {/* 下 */}
             <div className="flex">
               <LongestBorder>
-                <div className="flex-row" style={{height: "100%", padding: "2% 1.5% 1.5% 1.5%"}}>
+                <div
+                  className="flex-row"
+                  style={{ height: "100%", padding: "2% 1.5% 1.5% 1.5%" }}
+                >
                   {/* 左 */}
                   <div className="flex flex-col">
                     <div className="flex">
-                      <Info data1={this.state.vol} data2={this.state.temperature}/>
+                      <Info
+                        data1={this.state.vol}
+                        data2={this.state.temperature}
+                      />
                     </div>
-                    <div className="flex" style={{marginTop: "2px"}}>
-                      <Info data1={this.state.MOSTemperature} data2={this.state.electricity}/>
+                    <div className="flex" style={{ marginTop: "2px" }}>
+                      <Info
+                        data1={this.state.MOSTemperature}
+                        data2={this.state.electricity}
+                      />
                     </div>
                   </div>
                   {/* 右 */}
@@ -162,50 +174,50 @@ class StatusView extends React.Component {
                     initData={this.initData.bind(this)}
                   />
                 </div>
-
               </LongestBorder>
             </div>
           </div>
         </div>
-        <div style={{height: "10px"}}/>
+        <div style={{ height: "10px" }} />
       </div>
-    )
+    );
   }
 }
 
 class TopLeft extends React.Component {
   render() {
-    const data = this.props.data || {}
+    const data = this.props.data || {};
     if (data.hasOwnProperty("data")) {
       return (
         <div className="flex">
           <CommonBorder>
-            <div style={{height: "100%"}} className="flex-col">
-              <div className="flex survey-img"/>
-              <div className="flex-row flex-space-around survey-content" style={{padding: "3% 10% 5%"}}>
-                {
-                  data.data.map((val, index) => {
-                    return (
-                      <div className="flex-row" key={index}>
-                        <p className="status-name font-small" style={{paddingRight: "5px"}}>
-                          {val.name}
-                        </p>
-                        <p className="status-value font-small">
-                          {val.value}
-                        </p>
-                      </div>
-                    )
-                  })
-                }
+            <div style={{ height: "100%" }} className="flex-col">
+              <div className="flex survey-img" />
+              <div
+                className="flex-row flex-space-around survey-content"
+                style={{ padding: "3% 10% 5%" }}
+              >
+                {data.data.map((val, index) => {
+                  return (
+                    <div className="flex-row" key={index}>
+                      <p
+                        className="status-name font-small"
+                        style={{ paddingRight: "5px" }}
+                      >
+                        {val.name}
+                      </p>
+                      <p className="status-value font-small">{val.value}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </CommonBorder>
         </div>
-      )
+      );
     } else {
-      return null
+      return null;
     }
-
   }
 }
 
@@ -214,54 +226,54 @@ class TopRight extends React.Component {
     return (
       <div className="flex2">
         <LongerBorder>
-          <div className="flex-row" style={{height: "100%", padding: "2.5% 2% 1.5% 2%"}}>
+          <div
+            className="flex-row"
+            style={{ height: "100%", padding: "2.5% 2% 1.5% 2%" }}
+          >
             <div className="flex flex-col">
               <div className="flex">
-                <Instrument data={this.props.load}/>
+                <Instrument data={this.props.load} />
               </div>
             </div>
             <div className="flex3">
-              <Percent/>
+              <Percent data={this.props.percent} />
             </div>
             <div className="flex flex-col">
               <div className="flex">
-                <Weather data={this.props.weather}/>
+                <Weather data={this.props.weather} />
               </div>
-              <div className="flex" style={{marginTop: "2px"}}>
-                <Environment data={this.props.environment}/>
+              <div className="flex" style={{ marginTop: "2px" }}>
+                <Environment data={this.props.environment} />
               </div>
             </div>
           </div>
         </LongerBorder>
       </div>
-    )
+    );
   }
 }
 
 class Instrument extends React.Component {
   render() {
-    const data = this.props.data || {}
+    const data = this.props.data || {};
     if (data.hasOwnProperty("data") && data.hasOwnProperty("title")) {
       return (
         <HigherBackground>
-          <div style={{height: "100%", padding: "7% 10%"}} className="flex-col">
-            <p className="title font-xs">
-              {data.title}
-            </p>
+          <div
+            style={{ height: "100%", padding: "7% 10%" }}
+            className="flex-col"
+          >
+            <p className="title font-xs">{data.title}</p>
             <div className="flex flex-col">
-              {
-                data.data.map((item, index) => {
-                  return (
-                    <InstrumentItem data={item} key={index}/>
-                  )
-                })
-              }
+              {data.data.map((item, index) => {
+                return <InstrumentItem data={item} key={index} />;
+              })}
             </div>
           </div>
         </HigherBackground>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   }
 }
@@ -271,50 +283,55 @@ class InstrumentItem extends React.Component {
     return (
       <div className="flex flex-col">
         <div className="flex">
-          <InstrumentSvg rotate={this.props.data.rotate}/>
+          <InstrumentSvg rotate={this.props.data.rotate} />
         </div>
-        <p className="status-name font-xs">
-          {this.props.data.name}
-        </p>
-        <p className="status-value font-xs">
-          {this.props.data.value}
-        </p>
+        <p className="status-name font-xs">{this.props.data.name}</p>
+        <p className="status-value font-xs">{this.props.data.value}</p>
       </div>
-    )
+    );
   }
 }
 
 class Percent extends React.Component {
   render() {
-    return (
-      <div></div>
-    )
+    const data = this.props.data || {};
+    if (data.hasOwnProperty("data")) {
+      return (
+        <div className="flex-col" style={{ height: "100%" }}>
+          <p
+            className="title font-xs"
+            style={{ textAlign: "center", paddingTop: "2%" }}
+          >
+            {data.title}
+          </p>
+          <PercentSvg data={data.data} center={data.center} />
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
 class Title extends React.Component {
   render() {
-    const title = this.props.title || {}
+    const title = this.props.title || {};
     return (
       <Background>
-        <div style={{height: "100%", padding: "7%"}} className="flex-col">
-          <p className="title font-xs">
-            {title}
-          </p>
-          {
-            this.props.children
-          }
+        <div style={{ height: "100%", padding: "7%" }} className="flex-col">
+          <p className="title font-xs">{title}</p>
+          {this.props.children}
         </div>
       </Background>
-    )
+    );
   }
 }
 
 class Weather extends React.Component {
   render() {
-    const data = this.props.data || {}
+    const data = this.props.data || {};
     if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
-      const Weather_Forecast = data.data
+      const Weather_Forecast = data.data;
       return (
         <Title title={data.title}>
           <div className="flex flex-col flex-center">
@@ -391,159 +408,146 @@ class Weather extends React.Component {
                 >
                   {Weather_Forecast.air} {Weather_Forecast.air_level}
                 </text>
-                {
-                  (() => {
-                    if (Weather_Forecast.tem < 0) {
-                      return (
-                        <text
-                          transform="matrix(1 0 0 1 90.25 75.75)"
+                {(() => {
+                  if (Weather_Forecast.tem < 0) {
+                    return (
+                      <text transform="matrix(1 0 0 1 90.25 75.75)">
+                        <tspan
+                          x="0"
+                          y="0"
+                          fill="#FFFFFF"
+                          fontFamily="'MicrosoftYaHei-Bold'"
+                          fontSize="10"
                         >
-                          <tspan
-                            x="0"
-                            y="0"
-                            fill="#FFFFFF"
-                            fontFamily="'MicrosoftYaHei-Bold'"
-                            fontSize="10"
-                          >
-                            零
-                          </tspan>
-                          <tspan
-                            x="0"
-                            y="12"
-                            fill="#FFFFFF"
-                            fontFamily="'MicrosoftYaHei-Bold'"
-                            fontSize="10"
-                          >
-                            下
-                          </tspan>
-                        </text>
-                      )
-                    } else {
-                      return null
-                    }
-                  })()
-                }
-
+                          零
+                        </tspan>
+                        <tspan
+                          x="0"
+                          y="12"
+                          fill="#FFFFFF"
+                          fontFamily="'MicrosoftYaHei-Bold'"
+                          fontSize="10"
+                        >
+                          下
+                        </tspan>
+                      </text>
+                    );
+                  } else {
+                    return null;
+                  }
+                })()}
               </g>
               <g id="天气状态">
                 <image
                   transform="matrix(1 0 0 1 120 10)"
                   width="32"
                   height="32"
-                  xlinkHref={'http://sf28090049.wicp.vip:8082/conn/Weather/' + Weather_Forecast.wea_img + '.png'}
+                  xlinkHref={
+                    "http://sf28090049.wicp.vip:8082/conn/Weather/" +
+                    Weather_Forecast.wea_img +
+                    ".png"
+                  }
                 />
               </g>
             </svg>
           </div>
         </Title>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   }
 }
 
 class Environment extends React.Component {
   render() {
-    const data = this.props.data || {}
+    const data = this.props.data || {};
     const style = [
       {
-        backgroundImage: `url(${require("../img/thermometer.png")})`
+        backgroundImage: `url(${require("../img/thermometer.png")})`,
       },
       {
-        backgroundImage: `url(${require("../img/hygrometer.png")})`
-      }
-    ]
+        backgroundImage: `url(${require("../img/hygrometer.png")})`,
+      },
+    ];
     if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
       return (
         <Title title={data.title}>
           <div className="flex flex-row">
-            {
-              data.data.map((item, index) => {
-                return (
-                  <div className="flex flex-col" key={index}>
-                    <div className="flex weather-bg" style={style[index]}/>
-                    <div>
-                      <p className="status-name font-xs">
-                        {item.name}
-                      </p>
-                      <p className="status-value font-xs">
-                        {item.value}
-                      </p>
-                    </div>
+            {data.data.map((item, index) => {
+              return (
+                <div className="flex flex-col" key={index}>
+                  <div className="flex weather-bg" style={style[index]} />
+                  <div>
+                    <p className="status-name font-xs">{item.name}</p>
+                    <p className="status-value font-xs">{item.value}</p>
                   </div>
-                )
-              })
-            }
+                </div>
+              );
+            })}
           </div>
         </Title>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   }
 }
 
 class Info extends React.Component {
   render() {
-    const data1 = this.props.data1 || {}
-    const data2 = this.props.data2 || {}
-    const data = [data1, data2]
+    const data1 = this.props.data1 || {};
+    const data2 = this.props.data2 || {};
+    const data = [data1, data2];
     return (
       <Background>
-        <div className="flex-col" style={{height: "100%", padding: "6% 10%"}}>
-          {
-            data.map((item, index) => {
-              if (item.hasOwnProperty("title") && item.hasOwnProperty("data")) {
-                return (
-                  <div className="flex info font-xs flex-col flex-space-around" key={index + '1'}>
-                    <p className="title">
-                      {item.title}
-                    </p>
-                    {
-                      (item.data).map((val, index) => {
-                        return (
-                          <div className="info-item flex-row flex-space-between" key={index}>
-                            <p className="name">
-                              {val.name}
-                            </p>
-                            <p className="value">
-                              {val.value}
-                            </p>
-                            <p className="position">
-                              {val.position}
-                            </p>
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                )
-              } else {
-                return null
-              }
-            })
-          }
+        <div className="flex-col" style={{ height: "100%", padding: "6% 10%" }}>
+          {data.map((item, index) => {
+            if (item.hasOwnProperty("title") && item.hasOwnProperty("data")) {
+              return (
+                <div
+                  className="flex info font-xs flex-col flex-space-around"
+                  key={index + "1"}
+                >
+                  <p className="title">{item.title}</p>
+                  {item.data.map((val, index) => {
+                    return (
+                      <div
+                        className="info-item flex-row flex-space-between"
+                        key={index}
+                      >
+                        <p className="name">{val.name}</p>
+                        <p className="value">{val.value}</p>
+                        <p className="position">{val.position}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
         </div>
       </Background>
-    )
+    );
   }
 }
 
 class SingleBattery extends React.Component {
   render() {
-    const data = this.props.data || {}
+    const data = this.props.data || {};
     if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
       return (
-        <div className="flex7" style={{marginLeft: "2px"}}>
+        <div className="flex7" style={{ marginLeft: "2px" }}>
           <LongerBackground>
-            <div style={{height: "100%", padding: "3% 40px"}}>
+            <div style={{ height: "100%", padding: "3% 40px" }}>
               <div className="longest-title flex-col flex-center">
-                <p className="title font-xs" style={{width: "18px"}}>
+                <p className="title font-xs" style={{ width: "18px" }}>
                   {data.title}
                 </p>
               </div>
-              <Scrollbars style={{height: "100%", width: "100%"}} autoHide>
+              <Scrollbars style={{ height: "100%", width: "100%" }} autoHide>
                 <InfiniteScroll
                   className="list-contents flex-row flex-wrap"
                   initialLoad={false}
@@ -552,39 +556,35 @@ class SingleBattery extends React.Component {
                   hasMore={!this.props.loading && this.props.hasMore}
                   useWindow={false}
                 >
-                  {
-                    this.props.list.map((val, i) => {
-                      return (
-                        <div className="battery" key={i}>
-                          <Battery name={val.name} value={val.value}/>
-                        </div>
-                      )
-                    })
-                  }
+                  {this.props.list.map((val, i) => {
+                    return (
+                      <div className="battery" key={i}>
+                        <Battery name={val.name} value={val.value} />
+                      </div>
+                    );
+                  })}
                 </InfiniteScroll>
               </Scrollbars>
-              {this.props.loading ? <Loading text="加载中..."/> : ""}
-              {!this.props.hasMore ? <Loading text="没有更多了"/> : ""}
+              {this.props.loading ? <Loading text="加载中..." /> : ""}
+              {!this.props.hasMore ? <Loading text="没有更多了" /> : ""}
             </div>
           </LongerBackground>
         </div>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   }
 }
 
 class Loading extends React.Component {
   render() {
-    const text = this.props.text
+    const text = this.props.text;
     return (
       <div className="loading">
-        <p>
-          {text}
-        </p>
+        <p>{text}</p>
       </div>
-    )
+    );
   }
 }
 

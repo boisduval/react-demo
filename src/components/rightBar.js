@@ -2,8 +2,8 @@ import React from "react";
 
 class RightBar extends React.Component {
   render() {
-    const color = this.props.color || "#EC8E26"
-    const num = this.props.num || 3
+    const color = this.props.color || "#EC8E26";
+    const num = this.props.num || 3;
     return (
       <div className="bar">
         <svg
@@ -14,7 +14,8 @@ class RightBar extends React.Component {
           y="0px"
           viewBox="0 0 230 20"
           enableBackground="new 0 0 230 20"
-          xmlSpace="preserve">
+          xmlSpace="preserve"
+        >
           <g>
             <rect
               x="21.86"
@@ -24,7 +25,8 @@ class RightBar extends React.Component {
               strokeWidth="3"
               strokeMiterlimit="10"
               width="207"
-              height="17"/>
+              height="17"
+            />
             <polygon
               fill={color}
               stroke={color}
@@ -34,24 +36,27 @@ class RightBar extends React.Component {
             />
           </g>
           <g>
-            {
-              (() => {
-                let arr = []
-                for (let i = 0; i < num; i++) {
-                  arr.push(
-                    <rect className="rect" x={216.36 - i * 10} y="4" fill={color} width="8" height="12"/>
-                  )
-                }
-                return arr
-              })()
-            }
+            {(() => {
+              let arr = [];
+              for (let i = 0; i < num; i++) {
+                arr.push(
+                  <rect
+                    className="rect"
+                    x={216.36 - i * 10}
+                    y="4"
+                    fill={color}
+                    width="8"
+                    height="12"
+                  />
+                );
+              }
+              return arr;
+            })()}
           </g>
         </svg>
-
-
       </div>
-    )
+    );
   }
 }
 
-export default RightBar
+export default RightBar;

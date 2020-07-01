@@ -3,7 +3,7 @@ import React from "react";
 class Battery extends React.Component {
   render() {
     return (
-      <div style={{height: "100%", width: "100%"}}>
+      <div style={{ height: "100%", width: "100%" }}>
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ class Battery extends React.Component {
                 width="88"
                 height="70"
               />
-              <rect x="8" y="226" fill="#808080" width="86" height="36"/>
+              <rect x="8" y="226" fill="#808080" width="86" height="36" />
             </g>
           </g>
           <g id="图层_2">
@@ -109,8 +109,8 @@ class Battery extends React.Component {
           </g>
         </svg>
       </div>
-    )
+    );
   }
 }
 
-export default Battery
+export default Battery;

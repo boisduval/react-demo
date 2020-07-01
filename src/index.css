@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -21,23 +22,28 @@ img {
 li {
   list-style: none;
 }
+
 ul {
   margin: 0;
   padding: 0;
 }
+
 a {
   list-style: none;
   text-decoration: none;
 }
+
 a:visited {
   color: inherit;
 }
+
 #root {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #0C1731;
+  background-color: #0c1731;
 }
+
 .content {
   flex: 1;
   min-height: 0;
@@ -45,11 +51,13 @@ a:visited {
   margin: 0 10px;
   padding-top: 10px;
 }
+
 /* flex */
 .flex-row {
   display: flex;
   flex-direction: row;
 }
+
 .flex-col {
   display: flex;
   flex-direction: column;
@@ -130,96 +138,129 @@ a:visited {
   .font-head {
     font-size: 18px;
   }
+
   .font-nav {
     font-size: 16px;
   }
+
   .font-xs {
     font-size: 12px;
   }
+
   .font-small {
     font-size: 12px;
   }
+
   .font-medium {
     font-size: 14px;
   }
-  html,body {
+
+  html,
+  body {
     min-height: 600px;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .font-head {
     font-size: 20px;
   }
+
   .font-nav {
     font-size: 18px;
   }
+
   .font-xs {
     font-size: 12px;
   }
+
   .font-small {
     font-size: 12px;
   }
+
   .font-medium {
     font-size: 14px;
   }
-  html,body {
+
+  html,
+  body {
     min-height: 650px;
   }
 }
+
 @media screen and (min-width: 1400px) {
   .font-head {
     font-size: 22px;
   }
+
   .font-nav {
     font-size: 20px;
   }
+
   .font-xs {
     font-size: 12px;
   }
+
   .font-small {
     font-size: 14px;
   }
+
   .font-medium {
     font-size: 16px;
   }
-  html,body {
+
+  html,
+  body {
     min-height: 750px;
   }
 }
+
 @media screen and (min-width: 1600px) {
   .font-head {
     font-size: 26px;
   }
+
   .font-nav {
     font-size: 22px;
   }
+
   .font-xs {
     font-size: 12px;
   }
+
   .font-small {
     font-size: 14px;
   }
+
   .font-medium {
     font-size: 16px;
   }
-  html,body {
+
+  html,
+  body {
     min-height: 800px;
   }
 }
+
 @media screen and (min-width: 1800px) {
   .font-xs {
     font-size: 14px;
   }
+
   .font-nav {
     font-size: 22px;
   }
+
   .font-small {
     font-size: 16px;
   }
+
   .font-medium {
     font-size: 18px;
   }
-  html,body {
+
+  html,
+  body {
     min-height: 900px;
   }
 }
