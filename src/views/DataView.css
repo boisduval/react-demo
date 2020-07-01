@@ -49,6 +49,15 @@
   text-align: center;
 }
 
+.sys-item-name {
+  text-align: center;
+}
+
+.sys-item-value {
+  text-align: center;
+  color: #ccc;
+}
+
 @media screen and (max-width: 1200px) {
   .order-item .num {
     width: 17px;

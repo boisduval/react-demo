@@ -5,6 +5,7 @@ import Left from "../components/border/data/left";
 import Right from "../components/border/data/right";
 import Center from "../components/border/data/center";
 import CenterBg from "../components/border/data/centerBg";
+import LeftBar from "../components/leftBar"
 
 // 引入 ECharts 主模块
 import echarts from 'echarts/lib/echarts';
@@ -19,6 +20,7 @@ import 'echarts/lib/component/title';
 import 'echarts/lib/component/legend';
 
 import '../http/http'
+import RightBar from "../components/rightBar";
 
 class DataView extends React.Component {
   getData() {
@@ -46,6 +48,12 @@ class DataView extends React.Component {
       })
       this.setState({
         powerCut: res.data.data.powerCut
+      })
+      this.setState({
+        systemInfo: res.data.data.systemInfo
+      })
+      this.setState({
+        otherInfo: res.data.data.otherInfo
       })
       this.getChart()
     })
@@ -424,6 +432,8 @@ class DataView extends React.Component {
       percentForYear: null,
       realtimeStatus: null,
       powerCut: null,
+      systemInfo: null,
+      otherInfo: null,
       color: ['#F7931D', '#7BC944', '#FF7BAC', '#3FA9F5'],
       color1: ['#68E0E3', '#FEDB5C', '#37A2DA', '#E062AE'],
       color2: ['#96BFFF', '#37A2DA', '#FFDB5C', '#FF9F7F', '#FB7293', '#E7BCF3', '#8377EA']
@@ -444,7 +454,7 @@ class DataView extends React.Component {
           {/* 左 */}
           {/* 上 */}
           <div className="flex" style={{marginBottom: "5px"}}>
-            <SystemInfo/>
+            <SystemInfo data={this.state.systemInfo}/>
           </div>
 
           {/* 下 */}
@@ -460,7 +470,7 @@ class DataView extends React.Component {
           {/* 右 */}
           {/* 上 */}
           <div className="flex" style={{marginBottom: "5px"}}>
-            <Count/>
+            <Count data={this.state.otherInfo}/>
           </div>
 
           {/* 下 */}
@@ -568,14 +578,50 @@ class Map extends React.Component {
 
 class SystemInfo extends React.Component {
   render() {
+    const data = this.props.data || {}
+    const colorList = [
+      '#C77A20', '#0A6ECD', '#C81CBD', '#54CA21'
+    ]
+    if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
+      return (
+        <Left title={data.title}>
+          <div className="flex-col flex-space-around" style={{height: "100%", padding: "8% 3% 6%"}}>
+            {
+              data.data.map((item, index) => {
+                return (
+                  <SystemInfoItem name={item.name} value={item.value} key={index} color={colorList[index]}/>
+                )
+              })
+            }
+          </div>
+        </Left>
+      )
+    } else {
+      return null
+    }
+  }
+}
+
+class SystemInfoItem extends React.Component {
+  render() {
+    const name = this.props.name || ""
+    const value = this.props.value || ""
+    const color = this.props.color
+    const style = {
+      color: color
+    }
     return (
-      <Left title="系统信息概况">
-        <div className="flex-row flex-center" style={{height: "100%"}}>
-          <p style={{color: "#fff"}}>
-            12345678
-          </p>
+      <div className="flex-row flex-center">
+        <p className="sys-item-name flex2 font-small" style={style}>
+          {name}
+        </p>
+        <div className="flex5">
+          <LeftBar color={color}/>
         </div>
-      </Left>
+        <p className="sys-item-value flex3 font-small">
+          {value}
+        </p>
+      </div>
     )
   }
 }
@@ -584,23 +630,28 @@ class SystemInfo extends React.Component {
 class Area extends React.Component {
   render() {
     const colorList = this.props.colorList
-    const dataList = this.props.dataList ? this.props.dataList.data : []
-    return (
-      <Left title="地区分布概况">
-        <div className="flex-row flex-center" style={{height: "100%"}}>
-          <div className="flex charts" id="myChart1"/>
-          <div className="flex flex-col flex-center" style={{height: "100%"}}>
-            {
-              dataList.map((item, i) => {
-                return (
-                  <AreaItem color={colorList[i]} name={item.name} value={item.value} key={i}/>
-                )
-              })
-            }
+    const data = this.props.dataList || {}
+    if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
+      const dataList = data.data
+      return (
+        <Left title={data.title}>
+          <div className="flex-row flex-center" style={{height: "100%"}}>
+            <div className="flex charts" id="myChart1"/>
+            <div className="flex flex-col flex-center" style={{height: "100%"}}>
+              {
+                dataList.map((item, i) => {
+                  return (
+                    <AreaItem color={colorList[i]} name={item.name} value={item.value} key={i}/>
+                  )
+                })
+              }
+            </div>
           </div>
-        </div>
-      </Left>
-    )
+        </Left>
+      )
+    } else {
+      return null
+    }
   }
 }
 
@@ -627,23 +678,28 @@ class AreaItem extends React.Component {
 class RunningTime extends React.Component {
   render() {
     const colorList = this.props.colorList
-    const dataList = this.props.dataList ? this.props.dataList.data1 : []
-    return (
-      <Right title="设备运行时间分布情况">
-        <div className="flex-row flex-center" style={{height: "100%"}}>
-          <div className="flex flex-col flex-center" style={{height: "100%"}}>
-            {
-              dataList.map((item, i) => {
-                return (
-                  <RunningTimeItem color={colorList[i]} name={item.name} value={item.value} key={i}/>
-                )
-              })
-            }
+    const data = this.props.dataList || {}
+    if (data.hasOwnProperty("title") && data.hasOwnProperty("data1")) {
+      const dataList = data.data1
+      return (
+        <Right title={data.title}>
+          <div className="flex-row flex-center" style={{height: "100%"}}>
+            <div className="flex flex-col flex-center" style={{height: "100%"}}>
+              {
+                dataList.map((item, i) => {
+                  return (
+                    <RunningTimeItem color={colorList[i]} name={item.name} value={item.value} key={i}/>
+                  )
+                })
+              }
+            </div>
+            <div className="flex charts" id="myChart2"/>
           </div>
-          <div className="flex charts" id="myChart2"/>
-        </div>
-      </Right>
-    )
+        </Right>
+      )
+    } else {
+      return null
+    }
   }
 }
 
@@ -669,35 +725,76 @@ class RunningTimeItem extends React.Component {
 // 排行榜
 class Order extends React.Component {
   render() {
-    const list = this.props.dataList ? this.props.dataList.data : []
-    return (
-      <div className="flex-col flex-center" style={{height: "100%", padding: "4% 10%"}}>
-        {
-          list.map((item, i) => {
-            return (
-              <div className="flex-row font-small order-item" key={i} style={{width: "100%"}}>
-                <p className="num">{i + 1}</p>
-                <p className="flex name">{item.name}</p>
-                <p className="value">{item.value}</p>
-              </div>
-            )
-          })
-        }
-      </div>
-    )
+    const data = this.props.dataList || {}
+    if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
+      const list = data.data
+      return (
+        <div className="flex-col flex-center" style={{height: "100%", padding: "4% 10%"}}>
+          {
+            list.map((item, i) => {
+              return (
+                <div className="flex-row font-small order-item" key={i} style={{width: "100%"}}>
+                  <p className="num">{i + 1}</p>
+                  <p className="flex name">{item.name}</p>
+                  <p className="value">{item.value}</p>
+                </div>
+              )
+            })
+          }
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 }
 
 class Count extends React.Component {
   render() {
+    const data = this.props.data || {}
+    const colorList = [
+      '#C77A20', '#0A6ECD', '#C81CBD', '#54CA21'
+    ]
+    if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
+      return (
+        <Right>
+          <div className="flex-col flex-space-around" style={{height: "100%", padding: "8% 3% 6%"}}>
+            {
+              data.data.map((item, index) => {
+                return (
+                  <CountItem name={item.name} value={item.value} key={index} color={colorList[index]}/>
+                )
+              })
+            }
+          </div>
+        </Right>
+      )
+    } else {
+      return null
+    }
+  }
+}
+
+class CountItem extends React.Component {
+  render() {
+    const name = this.props.name || ""
+    const value = this.props.value || ""
+    const color = this.props.color
+    const style = {
+      color: color
+    }
     return (
-      <Right>
-        <div className="flex-row flex-center" style={{height: "100%"}}>
-          <p style={{color: "#fff"}}>
-            12345678
-          </p>
+      <div className="flex-row flex-center">
+        <p className="sys-item-value flex2 font-small">
+          {value}
+        </p>
+        <div className="flex5">
+          <RightBar color={color}/>
         </div>
-      </Right>
+        <p className="sys-item-name flex3 font-small" style={style}>
+          {name}
+        </p>
+      </div>
     )
   }
 }

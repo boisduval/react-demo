@@ -12,6 +12,7 @@ import Background from "../components/border/status/background";
 import HigherBackground from "../components/border/status/higherBackground";
 import LongerBackground from "../components/border/status/longerBackground";
 import Battery from "../components/battery";
+import InstrumentSvg from "../components/instrument";
 
 import {Scrollbars} from 'react-custom-scrollbars';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -128,8 +129,12 @@ class StatusView extends React.Component {
               {/* 左 */}
               <TopLeft data={this.state.survey}/>
               {/* 右 */}
-              <TopRight load={this.state.load} percent={this.state.percent} weather={this.state.weather}
-                        environment={this.state.environment}/>
+              <TopRight
+                load={this.state.load}
+                percent={this.state.percent}
+                weather={this.state.weather}
+                environment={this.state.environment}
+              />
             </div>
             {/* 下 */}
             <div className="flex">
@@ -177,7 +182,7 @@ class TopLeft extends React.Component {
           <CommonBorder>
             <div style={{height: "100%"}} className="flex-col">
               <div className="flex survey-img"/>
-              <div className="flex-row flex-space-around" style={{padding: "3% 10% 5%"}}>
+              <div className="flex-row flex-space-around survey-content" style={{padding: "3% 10% 5%"}}>
                 {
                   data.data.map((val, index) => {
                     return (
@@ -265,7 +270,9 @@ class InstrumentItem extends React.Component {
   render() {
     return (
       <div className="flex flex-col">
-        <div className="flex"></div>
+        <div className="flex">
+          <InstrumentSvg rotate={this.props.data.rotate}/>
+        </div>
         <p className="status-name font-xs">
           {this.props.data.name}
         </p>
@@ -439,6 +446,14 @@ class Weather extends React.Component {
 class Environment extends React.Component {
   render() {
     const data = this.props.data || {}
+    const style = [
+      {
+        backgroundImage: `url(${require("../img/thermometer.png")})`
+      },
+      {
+        backgroundImage: `url(${require("../img/hygrometer.png")})`
+      }
+    ]
     if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
       return (
         <Title title={data.title}>
@@ -447,9 +462,7 @@ class Environment extends React.Component {
               data.data.map((item, index) => {
                 return (
                   <div className="flex flex-col" key={index}>
-                    <div className="flex">
-
-                    </div>
+                    <div className="flex weather-bg" style={style[index]}/>
                     <div>
                       <p className="status-name font-xs">
                         {item.name}

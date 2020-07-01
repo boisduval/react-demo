@@ -40,9 +40,17 @@
 
 .survey-img {
   margin: 0 15%;
+  padding: 5% 0;
   border-bottom: 1px solid rgba(255,255,255,.2);
+  background: url("../img/5G.png") center center no-repeat;
+  background-size: contain;
+  background-origin: content-box;
 }
-
+.weather-bg {
+  background-size: contain;
+  background-position: 61% 50% ;
+  background-repeat: no-repeat;
+}
 .list-contents {
   height: 100%;
 }

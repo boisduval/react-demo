@@ -23,11 +23,13 @@
       "data": [
         {
           "name": "交流输入电压",
-          "value": "233.3V"
+          "value": "233.3V",
+          "rotate": "112"
         },
         {
           "name": "交流输入功率",
-          "value": "1.333KW"
+          "value": "1.333KW",
+          "rotate": "20"
         }
       ]
     },
