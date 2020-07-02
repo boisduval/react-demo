@@ -34,7 +34,7 @@ a {
 }
 
 a:visited {
-  color: inherit;
+  color: inherit !important;
 }
 
 #root {

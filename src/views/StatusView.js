@@ -162,17 +162,19 @@ class StatusView extends React.Component {
                     </div>
                   </div>
                   {/* 右 */}
-                  <SingleBattery
-                    data={this.state.singleBattery}
-                    loading={this.state.loading}
-                    pageNum={this.state.pageNum}
-                    pageSize={this.state.pageSize}
-                    total={this.state.total}
-                    hasMore={this.state.hasMore}
-                    list={this.state.data}
-                    getMore={this.getMore.bind(this)}
-                    initData={this.initData.bind(this)}
-                  />
+                  <div className="flex7">
+                    <SingleBattery
+                      data={this.state.singleBattery}
+                      loading={this.state.loading}
+                      pageNum={this.state.pageNum}
+                      pageSize={this.state.pageSize}
+                      total={this.state.total}
+                      hasMore={this.state.hasMore}
+                      list={this.state.data}
+                      getMore={this.getMore.bind(this)}
+                      initData={this.initData.bind(this)}
+                    />
+                  </div>
                 </div>
               </LongestBorder>
             </div>
@@ -539,7 +541,7 @@ class SingleBattery extends React.Component {
     const data = this.props.data || {};
     if (data.hasOwnProperty("title") && data.hasOwnProperty("data")) {
       return (
-        <div className="flex7" style={{ marginLeft: "2px" }}>
+        <div style={{ marginLeft: "2px", height: "100%" }}>
           <LongerBackground>
             <div style={{ height: "100%", padding: "3% 40px" }}>
               <div className="longest-title flex-col flex-center">

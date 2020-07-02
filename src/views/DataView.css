@@ -21,14 +21,14 @@
 .area-item .context {
   padding: 1% 5px;
   color: #fff;
-  background-color: rgba(31, 42, 53, .8);
+  background-color: rgba(31, 42, 53, 0.8);
   border-radius: 0 5px 5px 0;
 }
 
-.running-item .context{
+.running-item .context {
   padding: 1% 5px;
   color: #fff;
-  background-color: rgba(31, 42, 53, .8);
+  background-color: rgba(31, 42, 53, 0.8);
   border-radius: 5px 0 0 5px;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .order-item .name,
-.order-item .value{
+.order-item .value {
   color: #46a6b5;
 }
 
@@ -71,7 +71,6 @@
     height: 17px;
     line-height: 17px;
   }
-
 }
 @media screen and (min-width: 1400px) {
   .order-item .num {
@@ -79,7 +78,6 @@
     height: 20px;
     line-height: 20px;
   }
-
 }
 @media screen and (min-width: 1600px) {
   .order-item .num {
@@ -87,7 +85,6 @@
     height: 17px;
     line-height: 17px;
   }
-
 }
 @media screen and (min-width: 1800px) {
   .order-item .num {
@@ -95,6 +92,4 @@
     height: 17px;
     line-height: 17px;
   }
-
 }
-

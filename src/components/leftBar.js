@@ -48,6 +48,7 @@ class LeftBar extends React.Component {
                     fill={color}
                     width="8"
                     height="12"
+                    key={i}
                   />
                 );
               }
