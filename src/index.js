@@ -34,7 +34,7 @@ class Index extends React.Component {
 }
 
 ReactDOM.render(
-  <Router>
+  <Router basename="/statement">
     <Index />
     <Switch>
       <Route path="/" exact component={Home} />

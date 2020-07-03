@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./StatusView.css";
 import "./styles/border.css";
 import "../index.css";
@@ -80,7 +81,7 @@ class StatusView extends React.Component {
 
   getData(params) {
     console.log(params);
-    this.get("/api/status.json").then((res) => {
+    this.get("./api/status.json").then((res) => {
       const data = res.data.data;
       this.setState({
         survey: data.survey,
@@ -284,7 +285,7 @@ class InstrumentItem extends React.Component {
   render() {
     return (
       <div className="flex flex-col">
-        <div className="flex">
+        <div className="flex" style={{ marginBottom: "-26%" }}>
           <InstrumentSvg rotate={this.props.data.rotate} />
         </div>
         <p className="status-name font-xs">{this.props.data.name}</p>

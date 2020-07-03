@@ -3,6 +3,7 @@
   font-size: 14px;
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .picker {
@@ -47,13 +48,13 @@
   transform: translateX(20px);
 }
 
-@media screen and (min-width: 1500px){
+@media screen and (min-width: 1500px) {
   .swiper-slide {
     font-size: 14px;
   }
 }
 
-@media screen and (min-width: 1600px){
+@media screen and (min-width: 1600px) {
   .swiper-slide {
     font-size: 16px;
   }

@@ -24,7 +24,7 @@ import RightBar from "../components/rightBar";
 
 class DataView extends React.Component {
   getData() {
-    this.get("/api/data.json").then((res) => {
+    this.get("./api/data.json").then((res) => {
       this.setState({
         area: res.data.data.area,
       });
@@ -82,8 +82,19 @@ class DataView extends React.Component {
           emphasis: {
             label: {
               show: true,
-              fontSize: "15",
               fontWeight: "bold",
+              lineHeight: "24",
+              formatter: (param) => {
+                return `{a|${param.value}}\n{b|${param.seriesName}}`;
+              },
+              rich: {
+                a: {
+                  fontSize: 20,
+                },
+                b: {
+                  fontSize: 14,
+                },
+              },
             },
           },
           labelLine: {

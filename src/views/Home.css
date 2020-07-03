@@ -107,3 +107,14 @@ input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: #31c5df !important;
 }
+
+.home-icon {
+  color: #fff;
+  padding: 1%;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #46a6b5;
+  border-radius: 50%;
+  margin-right: 10px;
+}

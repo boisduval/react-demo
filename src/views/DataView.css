@@ -14,8 +14,7 @@
 .area-item .legend,
 .running-item .legend {
   width: 6px;
-  border-radius: 3px;
-  height: 100%;
+  border-radius: 2px;
 }
 
 .area-item .context {

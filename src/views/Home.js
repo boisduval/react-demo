@@ -5,6 +5,18 @@ import "antd/dist/antd.css";
 import "./Home.css";
 import "../index.css";
 import "./styles/nav.css";
+import "../font/iconfont.css";
+
+// 引入 ECharts 主模块
+import echarts from "echarts/lib/echarts";
+// 引入图
+import "echarts/lib/chart/pie";
+import "echarts/lib/chart/bar";
+// 引入提示框和标题组件
+import "echarts/lib/component/tooltip";
+import "echarts/lib/component/title";
+import "echarts/lib/component/legend";
+
 class Home extends React.Component {
   loadScript() {
     var script = document.createElement("script"); //创建虚拟dom
@@ -25,7 +37,7 @@ class Home extends React.Component {
   }
 
   getAreaList() {
-    this.get("/api/areaList.json").then((res) => {
+    this.get("./api/areaList.json").then((res) => {
       const data = res.data.data;
       this.setState({
         areaList: data,
@@ -35,7 +47,7 @@ class Home extends React.Component {
   }
 
   getData() {
-    this.get("/api/gisSurvey.json").then((res) => {
+    this.get("./api/gisSurvey.json").then((res) => {
       const data = res.data.data;
       this.setState({
         runningTime: data.runningTime,
@@ -49,7 +61,113 @@ class Home extends React.Component {
       this.setState({
         count: data.count,
       });
+      this.getChart();
     });
+  }
+
+  getChart() {
+    // 第一个图
+    let myChart1 = echarts.init(document.getElementById("myChart1"));
+    // 绘制图表
+    myChart1.setOption({
+      tooltip: {
+        position: "right",
+      },
+      color: this.state.color,
+      series: [
+        {
+          name: this.state.status.name,
+          type: "pie",
+          tooltip: {},
+          radius: ["50%", "70%"],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: "center",
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontWeight: "bold",
+              lineHeight: "24",
+              formatter: (param) => {
+                return `{a|${param.value}}\n{b|${param.seriesName}}`;
+              },
+              rich: {
+                a: {
+                  fontSize: "20",
+                },
+                b: {
+                  fontSize: "14",
+                },
+              },
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: this.state.status.data,
+        },
+      ],
+    });
+
+    // 第2个图
+    let myChart2 = echarts.init(document.getElementById("myChart2"));
+    // 绘制图表
+    myChart2.setOption({
+      color: ["#11AFF6"],
+      tooltip: {
+        trigger: "axis",
+      },
+      grid: {
+        top: "20%",
+        bottom: "24%",
+        left: "16%",
+        right: "8%",
+      },
+      calculable: true,
+      xAxis: [
+        {
+          type: "category",
+          axisLine: {
+            lineStyle: {
+              color: "#46a6b5",
+            },
+          },
+          splitLine: {
+            show: false,
+          },
+          data: this.state.count.xAxis,
+        },
+      ],
+      yAxis: [
+        {
+          type: "value",
+          axisLine: {
+            lineStyle: {
+              color: "#46a6b5",
+            },
+          },
+          splitLine: {
+            show: false,
+          },
+        },
+      ],
+      series: [
+        {
+          name: this.state.count.series[0].name,
+          type: "bar",
+          data: this.state.count.series[0].data,
+        },
+      ],
+    });
+
+    setTimeout(function () {
+      window.onresize = () => {
+        myChart1.resize();
+        myChart2.resize();
+      };
+    }, 200);
   }
 
   constructor(props) {
@@ -60,6 +178,7 @@ class Home extends React.Component {
       survey: null,
       status: null,
       count: null,
+      color: ["#F7931D", "#7BC944", "#FF7BAC", "#3FA9F5"],
     };
   }
   componentDidMount() {
@@ -82,22 +201,9 @@ class Home extends React.Component {
         </div>
         <div className="flex flex-col">
           <Tip data={this.state.runningTime} />
-          <div className="flex flex-col" style={{ marginBottom: "10px" }}>
-            <p className="title-background font-small title-color">系统概况</p>
-            <div className="flex content-background"></div>
-          </div>
-          <div className="flex flex-col" style={{ marginBottom: "10px" }}>
-            <p className="title-background font-small title-color blue-border">
-              设备运行状态
-            </p>
-            <div className="flex content-background"></div>
-          </div>
-          <div className="flex flex-col">
-            <p className="title-background font-small title-color blue-border">
-              备电统计
-            </p>
-            <div className="flex content-background"></div>
-          </div>
+          <Survey data={this.state.survey} />
+          <Status data={this.state.status} color={this.state.color} />
+          <Count data={this.state.count} />
         </div>
       </div>
     );
@@ -174,6 +280,125 @@ class Tip extends React.Component {
           <p className="font-xs" style={{ color: "#ccc" }}>
             <span className="title-color">{this.state.time}</span>
           </p>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+}
+
+class Survey extends React.Component {
+  render() {
+    const data = this.props.data || {};
+    const iconPath = ["icon-zhiya-", "icon-shield", "icon-signal"];
+    if (data.hasOwnProperty("data")) {
+      return (
+        <div className="flex flex-col" style={{ marginBottom: "10px" }}>
+          <p className="title-background font-small title-color">
+            {data.title}
+          </p>
+          <div
+            className="flex content-background flex-col flex-space-around"
+            style={{ padding: "5% 8%" }}
+          >
+            {data.data.map((item, index) => {
+              return (
+                <SurveyItem
+                  data={item}
+                  iconPath={iconPath[index]}
+                  key={index}
+                />
+              );
+            })}
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+}
+
+class SurveyItem extends React.Component {
+  render() {
+    const data = this.props.data;
+    const iconPath = this.props.iconPath;
+    return (
+      <div className="flex-row flex-center home-survey-item">
+        <div className="home-icon flex-col flex-center">
+          <i className={`font-large iconfont ${iconPath}`} />
+        </div>
+        <div className="flex2" style={{ color: "#ccc" }}>
+          <p>{data.name}</p>
+        </div>
+        <div className="flex title-color">
+          <p>{data.value}</p>
+        </div>
+      </div>
+    );
+  }
+}
+
+class Status extends React.Component {
+  render() {
+    const data = this.props.data || {};
+    const color = this.props.color;
+    if (data.hasOwnProperty("data")) {
+      return (
+        <div className="flex flex-col" style={{ marginBottom: "10px" }}>
+          <p className="title-background font-small title-color blue-border">
+            {data.title}
+          </p>
+          <div className="flex content-background flex-row flex-center">
+            <div id="myChart1" className="charts flex" />
+            <div className="flex">
+              {data.data.map((item, i) => {
+                return (
+                  <StatusItem
+                    name={item.name}
+                    value={item.value}
+                    color={color[i]}
+                    key={i}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+}
+
+class StatusItem extends React.Component {
+  render() {
+    return (
+      <div className="area-item flex-row">
+        <div className="legend" style={{ background: this.props.color }} />
+        <div className="context flex flex-row flex-space-between font-small">
+          <p className="name">{this.props.name}</p>
+          <p className="value">{this.props.value}</p>
+        </div>
+      </div>
+    );
+  }
+}
+
+class Count extends React.Component {
+  render() {
+    const data = this.props.data || {};
+    if (data.hasOwnProperty("series")) {
+      return (
+        <div className="flex flex-col">
+          <p className="title-background font-small title-color blue-border">
+            {data.title}
+          </p>
+          <div className="flex content-background">
+            <div id="myChart2" className="charts" />
+          </div>
         </div>
       );
     } else {

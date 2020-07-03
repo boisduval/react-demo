@@ -1,6 +1,6 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
-import "../views/styles/nav.css"
+import { NavLink } from "react-router-dom";
+import "../views/styles/nav.css";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -9,26 +9,26 @@ class Nav extends React.Component {
       leftNav: [
         {
           name: "GIS 总览",
-          path: "/"
+          path: "/",
         },
         {
           name: "数据中心",
-          path: "/data"
-        }
+          path: "/data",
+        },
       ],
       rightNav: [
         {
           name: "基站状态",
-          path: "/status"
+          path: "/status",
         },
         {
           name: "系统安全",
-          path: "/security"
-        }
+          path: "/security",
+        },
       ],
       title: "数据监控中心",
-      company: "浙江衡睿科技有限公司"
-    }
+      company: "浙江衡睿科技有限公司",
+    };
   }
 
   render() {
@@ -36,7 +36,7 @@ class Nav extends React.Component {
       <div id="nav" className="flex-row flex-center">
         <nav className="left flex2">
           <ul className="flex-row flex-end">
-            <NavItem arr={this.state.leftNav}/>
+            <NavItem arr={this.state.leftNav} />
           </ul>
         </nav>
         <p title="标题" className="headline flex font-head">
@@ -44,28 +44,26 @@ class Nav extends React.Component {
         </p>
         <nav className="right flex2">
           <ul className="flex-row flex-start">
-            <NavItem arr={this.state.rightNav}/>
+            <NavItem arr={this.state.rightNav} />
           </ul>
         </nav>
-        <Company name={this.state.company}/>
+        <Company name={this.state.company} />
       </div>
-    )
+    );
   }
 }
 
 class NavItem extends React.Component {
   render() {
-    const list = this.props.arr
-    const listItems = list.map((val) =>
+    const list = this.props.arr;
+    const listItems = list.map((val) => (
       <li className="font-nav" key={val.path}>
         <NavLink to={val.path} exact activeClassName="active-nav">
           {val.name}
         </NavLink>
       </li>
-    )
-    return (
-      listItems
-    )
+    ));
+    return listItems;
   }
 }
 
@@ -73,13 +71,11 @@ class Company extends React.Component {
   render() {
     return (
       <div id="company" className="flex-row flex-center">
-        <img src={require("../img/logo.png")} alt="公司logo"/>
-        <p>
-          {this.props.name}
-        </p>
+        <img src={require("../img/logo.png")} alt="公司logo" />
+        <p>{this.props.name}</p>
       </div>
-    )
+    );
   }
 }
 
-export default Nav
+export default Nav;

@@ -1,27 +1,27 @@
 import React from "react";
-import "./instrument.css"
+import "./instrument.css";
 
 class Instrument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      delay: true
-    }
+      delay: true,
+    };
   }
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        delay: false
-      })
-    }, 200)
+        delay: false,
+      });
+    }, 200);
   }
 
   render() {
-    const rotate = this.props.rotate || "0"
+    const rotate = this.props.rotate || "0";
     return (
-      <div style={{position: "relative", height: "100%"}}>
-        <div style={{height: "100%"}}>
+      <div style={{ position: "relative", height: "100%" }}>
+        <div style={{ height: "100%" }}>
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -30,9 +30,10 @@ class Instrument extends React.Component {
             y="0px"
             width="100%"
             height="100%"
-            viewBox="0 0 180 180"
+            viewBox="0 0 180 237.6"
             enableBackground="new 0 0 180 180"
             xmlSpace="preserve"
+            preserveAspectRatio="xMidYMid meet"
           >
             <g>
               <g>
@@ -151,9 +152,9 @@ class Instrument extends React.Component {
         <div
           className="indicating-instrument-svg"
           style={{
-            transform: this.state.delay ? 0 : 'rotate(' + rotate + 'deg)',
+            transform: this.state.delay ? 0 : "rotate(" + rotate + "deg)",
             transition: "all 1s ease-in-out",
-            transformOrigin: "50% 66%"
+            transformOrigin: "50% 50%",
           }}
         >
           <svg
@@ -164,19 +165,19 @@ class Instrument extends React.Component {
             y="0px"
             width="100%"
             height="100%"
-            viewBox="0 0 180 180"
+            viewBox="0 0 180 237.6"
             enableBackground="new 0 0 180 180"
             xmlSpace="preserve"
           >
             <g>
-              <circle fill="#F7931E" cx="90" cy="119" r="12"/>
-              <polygon fill="#F7931E" points="86,126 62,101 95,114"/>
+              <circle fill="#F7931E" cx="90" cy="119" r="12" />
+              <polygon fill="#F7931E" points="86,126 62,101 95,114" />
             </g>
           </svg>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Instrument
+export default Instrument;

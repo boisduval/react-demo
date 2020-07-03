@@ -6,10 +6,10 @@ let base = "";
 
 // 请求前拦截
 axios.interceptors.request.use(
-  config => {
+  (config) => {
     return config;
   },
-  err => {
+  (err) => {
     console.log("请求超时");
     return Promise.reject(err);
   }
@@ -17,10 +17,10 @@ axios.interceptors.request.use(
 
 // 返回后拦截
 axios.interceptors.response.use(
-  data => {
+  (data) => {
     return data;
   },
-  err => {
+  (err) => {
     if (err.response.status === 504 || err.response.status === 404) {
       console.log("服务器被吃了⊙﹏⊙∥");
     } else if (err.response.status === 401) {
@@ -40,8 +40,8 @@ const postRequestBody = (url, params) => {
     data: params,
     headers: {
       "Content-Type": "application/api",
-      charset: "utf-8"
-    }
+      charset: "utf-8",
+    },
   });
 };
 
@@ -52,29 +52,29 @@ const postRequestParam = (url, params) => {
     url: `${base}${url}`,
     data: params,
     transformRequest: [
-      function(data) {
+      function (data) {
         let ret = "";
         for (let it in data) {
           ret +=
             encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&";
         }
         return ret;
-      }
+      },
     ],
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
   });
 };
 
-const get = url => {
+const get = (url) => {
   return axios({
     method: "get",
-    url: `${base}${url}`
+    url: `${base}${url}`,
   });
 };
 
-const multiple = function(requsetArray, callback) {
+const multiple = function (requsetArray, callback) {
   axios.all(requsetArray).then(axios.spread(callback));
 };
 
