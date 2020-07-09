@@ -18,22 +18,65 @@ import "echarts/lib/component/title";
 import "echarts/lib/component/legend";
 
 class Home extends React.Component {
-  loadScript() {
-    var script = document.createElement("script"); //创建虚拟dom
-    script.type = "text/javascript";
-    //给虚拟dom添加src属性
-    script.src =
-      "//api.map.baidu.com/api?v=2.0&ak=把应用里的Ak值复制过来&callback=init";
-    //把虚拟dom追加到body
-    document.body.appendChild(script);
-  }
   init() {
-    const BMap = window.BMap; //全局使用BMap
-    this.map = new BMap.Map("map"); //创建地图示例，选择显示地图的容器，里面是id值
-    var point = new BMap.Point(116.404, 39.915); //创建点坐标（经度，纬度）
+    const { BMap } = window; //全局使用BMap
+    const data = this.state.map.data;
+    const img = require("../img/location.svg");
+    this.map = new BMap.Map("map", {
+      enableBizAuthLogo: false,
+    }); //创建地图示例，选择显示地图的容器，里面是id值
+    var point = new BMap.Point(data[0].point[0], data[0].point[1]); //创建点坐标（经度，纬度）
     this.map.centerAndZoom(point, 12); //初始化地图，设置中心点坐标和地图级别
-    // this.map.enableScrollWheelZoom(); // 启用滚轮放大缩小
-    this.map.setMapStyle({ style: "midnight" });
+    this.map.enableScrollWheelZoom(); // 启用滚轮放大缩小
+    // this.map.setMapStyle({ style: "midnight" });
+    this.map.setMapStyleV2({
+      styleId: "2de46c48fe30d166ab01e8eee1277969",
+    });
+
+    data.map((item) => {
+      var _point = new BMap.Point(item.point[0], item.point[1]);
+      var myIcon = new BMap.Icon(img, new BMap.Size(30, 40.218), {
+        // 指定定位位置。
+        anchor: new BMap.Size(10, -3),
+      });
+      // 创建标注对象并添加到地图
+      var marker = new BMap.Marker(_point, { icon: myIcon });
+      this.map.addOverlay(marker);
+
+      var opts = {
+        width: 400, // 信息窗口宽度
+        height: 160, // 信息窗口高度
+        // title: "故宫博物院", // 信息窗口标题
+        // message: "这里是故宫",
+      };
+      var content = `<div class="flex-row">
+        <img src=${item.dialog.imgURL} width="160px" height="160px">
+      <div class="flex" style="margin-left: 20px">
+        <p class="home-dialog">名称&nbsp;&nbsp;&nbsp;${item.dialog.name}</p>
+        <p class="home-dialog">编号&nbsp;&nbsp;&nbsp;${item.dialog.num}</p>
+        <p class="home-dialog">SOC&nbsp;&nbsp;&nbsp;${item.dialog.soc}</p>
+        <p class="home-dialog">SOH&nbsp;&nbsp;&nbsp;${item.dialog.soh}</p>
+        <p class="home-dialog">电量&nbsp;&nbsp;&nbsp;${item.dialog.electricity}</p>
+        <p class="home-dialog">状态&nbsp;&nbsp;&nbsp;${item.dialog.status}</p>
+        <p class="home-dialog">运行&nbsp;&nbsp;&nbsp;${item.dialog.running}</p>
+        </div>
+      </div>`;
+      // var infoBox = new BMapLib.InfoBox(this.map, "百度地图api", {
+      //   boxStyle: {
+      //     background: "#fff no-repeat center top",
+      //     width: "200px",
+      //   },
+      //   closeIconMargin: "10px 2px 0 0",
+      //   enableAutoPan: true,
+      //   alignBottom: false,
+      // });
+      var infoWindow = new BMap.InfoWindow(content, opts); // 创建信息窗口对象
+      marker.addEventListener("click", () => {
+        this.map.openInfoWindow(infoWindow, _point); //开启信息窗口
+        // infoBox.open(marker);
+      });
+      return null;
+    });
   }
 
   getAreaList() {
@@ -61,7 +104,12 @@ class Home extends React.Component {
       this.setState({
         count: data.count,
       });
+      this.setState({
+        map: data.map,
+      });
       this.getChart();
+      //异步加载
+      this.init();
     });
   }
 
@@ -178,14 +226,13 @@ class Home extends React.Component {
       survey: null,
       status: null,
       count: null,
+      map: null,
       color: ["#F7931D", "#7BC944", "#FF7BAC", "#3FA9F5"],
     };
   }
   componentDidMount() {
     //把当前的init方法变成全局的init方法
-    window.init = this.init.bind(this);
-    //异步加载
-    this.loadScript();
+    // window.init = this.init.bind(this);
     this.getAreaList();
   }
   render() {
@@ -325,7 +372,7 @@ class SurveyItem extends React.Component {
     const data = this.props.data;
     const iconPath = this.props.iconPath;
     return (
-      <div className="flex-row flex-center home-survey-item">
+      <div className="flex-row flex-center">
         <div className="home-icon flex-col flex-center">
           <i className={`font-large iconfont ${iconPath}`} />
         </div>

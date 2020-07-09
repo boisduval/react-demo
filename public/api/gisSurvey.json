@@ -82,6 +82,37 @@
         "11月",
         "12月"
       ]
+    },
+    "map": {
+      "title": "地图数据",
+      "data": [
+        {
+          "point": ["116", "39"],
+          "dialog": {
+            "name": "xxxx5G基站",
+            "num": "123-123-1234-12345",
+            "soc": "86%",
+            "soh": "88.8%",
+            "electricity": "6.6KWH",
+            "status": "正常充电",
+            "running": "正常运行 2 年 19 天",
+            "imgURL": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594027872092&di=fb1f87392ae477f441b0ed2ef158aaeb&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180424%2Fbbf6bd4dfcc34fd5bb743d77a6c28799.jpeg"
+          }
+        },
+        {
+          "point": ["116.1", "38.9"],
+          "dialog": {
+            "name": "xxxx5G基站",
+            "num": "123-123-1234-12345",
+            "soc": "86%",
+            "soh": "88.8%",
+            "electricity": "6.6KWH",
+            "status": "正常充电",
+            "running": "正常运行 2 年 19 天",
+            "imgURL": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594027872092&di=fb1f87392ae477f441b0ed2ef158aaeb&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180424%2Fbbf6bd4dfcc34fd5bb743d77a6c28799.jpeg"
+          }
+        }
+      ]
     }
   }
 }

@@ -84,11 +84,8 @@ class DevicePicker extends React.Component {
               className="flex flex-col flex-center"
               style={{ margin: "0 10px" }}
             >
-              <div className="picker">
-                <div
-                  className="swiper-container"
-                  style={{ height: "350px", marginTop: "120px" }}
-                >
+              <div className="picker flex-col flex-center">
+                <div className="swiper-container" style={{ height: "350px" }}>
                   <div className="swiper-wrapper">
                     {deviceList.map((item) => {
                       return (

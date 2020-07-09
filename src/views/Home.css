@@ -118,3 +118,7 @@ textarea:-ms-input-placeholder {
   border-radius: 50%;
   margin-right: 10px;
 }
+
+.home-dialog {
+  color: #46a6b5;
+}
