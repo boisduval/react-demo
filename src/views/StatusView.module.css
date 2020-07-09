@@ -2,11 +2,11 @@
   color: #46a6b5;
 }
 
-.info-item {
+.infoItem {
 }
 
-.info-item .value,
-.info-item .position {
+.infoItem .value,
+.infoItem .position {
   color: #f7931f;
 }
 
@@ -14,17 +14,17 @@
   color: #46a6b5;
 }
 
-.status-name {
+.statusName {
   color: #46a6b5;
   text-align: center;
 }
 
-.status-value {
+.statusValue {
   color: #f7931f;
   text-align: center;
 }
 
-.longest-title {
+.longestTitle {
   position: absolute;
   height: 100%;
   top: 0;
@@ -37,7 +37,7 @@
   margin-top: 10px;
 }
 
-.survey-img {
+.surveyImg {
   margin: 0 15%;
   padding: 5% 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -45,19 +45,13 @@
   background-size: contain;
   background-origin: content-box;
 }
-.weather-bg {
+.weatherBg {
   background-size: contain;
   background-position: 61% 50%;
   background-repeat: no-repeat;
 }
 
-.percent-svg {
-  background: url("../img/health_degree.png") center center no-repeat;
-  background-size: contain;
-  height: 100%;
-  width: 100%;
-}
-.list-contents {
+.listContents {
   height: 100%;
 }
 

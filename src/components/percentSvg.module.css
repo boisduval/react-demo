@@ -1,0 +1,6 @@
+.percentSvg {
+  background: url("../img/health_degree.png") center center no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}

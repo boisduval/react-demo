@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./percentSvg.module.css";
 
 class PercentSvg extends React.Component {
   render() {
@@ -8,7 +9,7 @@ class PercentSvg extends React.Component {
     const right = data.slice(2, 4);
     const center = data.slice(4, 5);
     return (
-      <div className="percent-svg flex">
+      <div className={[style.percentSvg, "flex"].join(" ")}>
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"

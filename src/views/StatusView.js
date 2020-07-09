@@ -1,9 +1,6 @@
 import React from "react";
 
-import "./StatusView.css";
-import "./styles/border.css";
-import "../index.css";
-import "./StatusView.css";
+import style from "./StatusView.module.css";
 
 import DevicePicker from "../components/devicePicker";
 import CommonBorder from "../components/border/status/commonBorder";
@@ -195,21 +192,25 @@ class TopLeft extends React.Component {
         <div className="flex">
           <CommonBorder>
             <div style={{ height: "100%" }} className="flex-col">
-              <div className="flex survey-img" />
+              <div className={["flex", style.surveyImg].join(" ")} />
               <div
-                className="flex-row flex-space-around survey-content"
+                className="flex-row flex-space-around"
                 style={{ padding: "3% 10% 5%" }}
               >
                 {data.data.map((val, index) => {
                   return (
                     <div className="flex-row" key={index}>
                       <p
-                        className="status-name font-small"
+                        className={[style.statusName, "font-small"].join(" ")}
                         style={{ paddingRight: "5px" }}
                       >
                         {val.name}
                       </p>
-                      <p className="status-value font-small">{val.value}</p>
+                      <p
+                        className={[style.statusValue, "font-small"].join(" ")}
+                      >
+                        {val.value}
+                      </p>
                     </div>
                   );
                 })}
@@ -266,7 +267,7 @@ class Instrument extends React.Component {
             style={{ height: "100%", padding: "7% 10%" }}
             className="flex-col"
           >
-            <p className="title font-xs">{data.title}</p>
+            <p className={[style.title, "font-xs"].join(" ")}>{data.title}</p>
             <div className="flex flex-col">
               {data.data.map((item, index) => {
                 return <InstrumentItem data={item} key={index} />;
@@ -288,8 +289,12 @@ class InstrumentItem extends React.Component {
         <div className="flex" style={{ marginBottom: "-26%" }}>
           <InstrumentSvg rotate={this.props.data.rotate} />
         </div>
-        <p className="status-name font-xs">{this.props.data.name}</p>
-        <p className="status-value font-xs">{this.props.data.value}</p>
+        <p className={[style.statusName, "font-xs"].join(" ")}>
+          {this.props.data.name}
+        </p>
+        <p className={[style.statusValue, "font-xs"].join(" ")}>
+          {this.props.data.value}
+        </p>
       </div>
     );
   }
@@ -302,7 +307,7 @@ class Percent extends React.Component {
       return (
         <div className="flex-col" style={{ height: "100%" }}>
           <p
-            className="title font-xs"
+            className={[style.title, "font-xs"].join(" ")}
             style={{ textAlign: "center", paddingTop: "2%" }}
           >
             {data.title}
@@ -322,7 +327,7 @@ class Title extends React.Component {
     return (
       <Background>
         <div style={{ height: "100%", padding: "7%" }} className="flex-col">
-          <p className="title font-xs">{title}</p>
+          <p className={[style.title, "font-xs"].join(" ")}>{title}</p>
           {this.props.children}
         </div>
       </Background>
@@ -465,7 +470,7 @@ class Weather extends React.Component {
 class Environment extends React.Component {
   render() {
     const data = this.props.data || {};
-    const style = [
+    const styles = [
       {
         backgroundImage: `url(${require("../img/thermometer.png")})`,
       },
@@ -480,10 +485,17 @@ class Environment extends React.Component {
             {data.data.map((item, index) => {
               return (
                 <div className="flex flex-col" key={index}>
-                  <div className="flex weather-bg" style={style[index]} />
+                  <div
+                    className={["flex", style.weatherBg].join(" ")}
+                    style={styles[index]}
+                  />
                   <div>
-                    <p className="status-name font-xs">{item.name}</p>
-                    <p className="status-value font-xs">{item.value}</p>
+                    <p className={[style.statusName, "font-xs"].join(" ")}>
+                      {item.name}
+                    </p>
+                    <p className={[style.statusValue, "font-xs"].join(" ")}>
+                      {item.value}
+                    </p>
                   </div>
                 </div>
               );
@@ -509,19 +521,26 @@ class Info extends React.Component {
             if (item.hasOwnProperty("title") && item.hasOwnProperty("data")) {
               return (
                 <div
-                  className="flex info font-xs flex-col flex-space-around"
+                  className={[
+                    "flex",
+                    style.info,
+                    "font-xs flex-col flex-space-around",
+                  ].join(" ")}
                   key={index + "1"}
                 >
-                  <p className="title">{item.title}</p>
+                  <p>{item.title}</p>
                   {item.data.map((val, index) => {
                     return (
                       <div
-                        className="info-item flex-row flex-space-between"
+                        className={[
+                          style.infoItem,
+                          "flex-row flex-space-between",
+                        ].join(" ")}
                         key={index}
                       >
-                        <p className="name">{val.name}</p>
-                        <p className="value">{val.value}</p>
-                        <p className="position">{val.position}</p>
+                        <p>{val.name}</p>
+                        <p className={style.value}>{val.value}</p>
+                        <p className={style.position}>{val.position}</p>
                       </div>
                     );
                   })}
@@ -545,14 +564,23 @@ class SingleBattery extends React.Component {
         <div style={{ marginLeft: "2px", height: "100%" }}>
           <LongerBackground>
             <div style={{ height: "100%", padding: "3% 40px" }}>
-              <div className="longest-title flex-col flex-center">
-                <p className="title font-xs" style={{ width: "18px" }}>
+              <div
+                className={[style.longestTitle, "flex-col flex-center"].join(
+                  " "
+                )}
+              >
+                <p
+                  className={[style.title, "font-xs"].join(" ")}
+                  style={{ width: "18px" }}
+                >
                   {data.title}
                 </p>
               </div>
               <Scrollbars style={{ height: "100%", width: "100%" }} autoHide>
                 <InfiniteScroll
-                  className="list-contents flex-row flex-wrap"
+                  className={[style.listContents, "flex-row flex-wrap"].join(
+                    " "
+                  )}
                   initialLoad={false}
                   pageStart={0}
                   loadMore={this.props.getMore.bind(this)}
@@ -561,7 +589,7 @@ class SingleBattery extends React.Component {
                 >
                   {this.props.list.map((val, i) => {
                     return (
-                      <div className="battery" key={i}>
+                      <div className={style.battery} key={i}>
                         <Battery name={val.name} value={val.value} />
                       </div>
                     );
@@ -584,7 +612,7 @@ class Loading extends React.Component {
   render() {
     const text = this.props.text;
     return (
-      <div className="loading">
+      <div className={style.loading}>
         <p>{text}</p>
       </div>
     );

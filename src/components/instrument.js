@@ -1,5 +1,5 @@
 import React from "react";
-import "./instrument.css";
+import style from "./instrument.module.css";
 
 class Instrument extends React.Component {
   constructor(props) {
@@ -150,7 +150,7 @@ class Instrument extends React.Component {
           </svg>
         </div>
         <div
-          className="indicating-instrument-svg"
+          className={style.indicatingInstrument}
           style={{
             transform: this.state.delay ? 0 : "rotate(" + rotate + "deg)",
             transition: "all 1s ease-in-out",

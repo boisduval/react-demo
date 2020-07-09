@@ -37,6 +37,10 @@ a:visited {
   color: inherit !important;
 }
 
+a:hover {
+  color: inherit !important;
+}
+
 #root {
   height: 100%;
   display: flex;

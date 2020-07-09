@@ -1,29 +1,26 @@
-a:hover {
-  color: inherit !important;
-}
-.top-item {
+.topItem {
   border-radius: 6px;
   margin-right: 1%;
   padding: 0.8% 1%;
 }
-.top-item:last-child {
+.topItem:last-child {
   margin-right: 0;
 }
 
-.top-item p {
+.topItem p {
   color: #ffffff;
   text-align: right;
 }
 
-.top-item .name {
+.topItem .name {
   font-weight: bold;
 }
 
-.top-item .value {
+.topItem .value {
   font-weight: bolder;
 }
 
-.top-item .icon {
+.topItem .icon {
   margin-right: 10%;
   background-image: url("../img/duandian.png");
   background-size: contain;

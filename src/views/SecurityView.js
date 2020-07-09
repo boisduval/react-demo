@@ -1,7 +1,5 @@
 import React from "react";
-import "./SecurityView.css";
-import "../index.css";
-import "./styles/border.css";
+import style from "./SecurityView.module.css";
 import TopBorder from "../components/border/security/topBorder";
 import MainBorder from "../components/border/security/mainBorder";
 import MainBg from "../components/border/security/mainBg";
@@ -621,13 +619,13 @@ class TopItem extends React.Component {
     const icon = this.props.icon;
     return (
       <div
-        className="flex top-item flex-row"
+        className={["flex", style.topItem, "flex-row"].join(" ")}
         style={{ backgroundColor: color }}
       >
-        <div className="flex icon" style={icon} />
+        <div className={["flex", style.icon].join(" ")} style={icon} />
         <div className="flex3 flex-col flex-center-end">
-          <p className="name font-small">{data.name}</p>
-          <p className="value font-medium">{data.value}</p>
+          <p className={[style.name, "font-small"].join(" ")}>{data.name}</p>
+          <p className={[style.value, "font-medium"].join(" ")}>{data.value}</p>
         </div>
       </div>
     );
