@@ -2,7 +2,7 @@ import React from "react";
 import { Cascader } from "antd";
 
 import "antd/dist/antd.css";
-import "./Home.css";
+import style from "./Home.module.css";
 import "../index.css";
 import "./styles/nav.css";
 import "../font/iconfont.css";
@@ -51,14 +51,14 @@ class Home extends React.Component {
       };
       var content = `<div class="flex-row">
         <img src=${item.dialog.imgURL} width="160px" height="160px">
-      <div class="flex" style="margin-left: 20px">
-        <p class="home-dialog">名称&nbsp;&nbsp;&nbsp;${item.dialog.name}</p>
-        <p class="home-dialog">编号&nbsp;&nbsp;&nbsp;${item.dialog.num}</p>
-        <p class="home-dialog">SOC&nbsp;&nbsp;&nbsp;${item.dialog.soc}</p>
-        <p class="home-dialog">SOH&nbsp;&nbsp;&nbsp;${item.dialog.soh}</p>
-        <p class="home-dialog">电量&nbsp;&nbsp;&nbsp;${item.dialog.electricity}</p>
-        <p class="home-dialog">状态&nbsp;&nbsp;&nbsp;${item.dialog.status}</p>
-        <p class="home-dialog">运行&nbsp;&nbsp;&nbsp;${item.dialog.running}</p>
+      <div class="flex" style="margin-left: 20px;color: #46a6b5">
+        <p>名称&nbsp;&nbsp;&nbsp;${item.dialog.name}</p>
+        <p>编号&nbsp;&nbsp;&nbsp;${item.dialog.num}</p>
+        <p>SOC&nbsp;&nbsp;&nbsp;${item.dialog.soc}</p>
+        <p>SOH&nbsp;&nbsp;&nbsp;${item.dialog.soh}</p>
+        <p>电量&nbsp;&nbsp;&nbsp;${item.dialog.electricity}</p>
+        <p>状态&nbsp;&nbsp;&nbsp;${item.dialog.status}</p>
+        <p>运行&nbsp;&nbsp;&nbsp;${item.dialog.running}</p>
         </div>
       </div>`;
       // var infoBox = new BMapLib.InfoBox(this.map, "百度地图api", {
@@ -240,7 +240,7 @@ class Home extends React.Component {
       <div className="content flex-row" style={{ padding: "10px 0" }}>
         <div className="flex3 flex-col" style={{ marginRight: "10px" }}>
           <div className="flex3">
-            <div className="map-box blue-border">
+            <div className={[style["map-box"], style["blue-border"]].join(" ")}>
               <div id="map" />
               <TopBar data={this.state.areaList} />
             </div>
@@ -265,9 +265,9 @@ class TopBar extends React.Component {
     const options = this.props.data || [];
     if (options.length !== 0) {
       return (
-        <div className="map-select">
+        <div className={style["map-select"]}>
           <span
-            className="font-medium title-color"
+            className={["font-medium", style["title-color"]].join(" ")}
             style={{ marginRight: "20px" }}
           >
             地区
@@ -318,14 +318,21 @@ class Tip extends React.Component {
     const data = this.props.data || {};
     if (data.hasOwnProperty("data")) {
       return (
-        <div className="running-time flex-row flex-space-between title-background">
+        <div
+          className={[
+            style["running-time"],
+            "flex-row",
+            "flex-space-between",
+            style["title-background"],
+          ].join(" ")}
+        >
           <p className="font-xs" style={{ color: "#ccc" }}>
             系统安全运行
-            <span className="title-color">{data.data.years}</span>年
-            <span className="title-color">{data.data.days}</span>天
+            <span className={style["title-color"]}>{data.data.years}</span>年
+            <span className={style["title-color"]}>{data.data.days}</span>天
           </p>
           <p className="font-xs" style={{ color: "#ccc" }}>
-            <span className="title-color">{this.state.time}</span>
+            <span className={style["title-color"]}>{this.state.time}</span>
           </p>
         </div>
       );
@@ -342,11 +349,22 @@ class Survey extends React.Component {
     if (data.hasOwnProperty("data")) {
       return (
         <div className="flex flex-col" style={{ marginBottom: "10px" }}>
-          <p className="title-background font-small title-color">
+          <p
+            className={[
+              style["title-background"],
+              "font-small",
+              style["title-color"],
+            ].join(" ")}
+          >
             {data.title}
           </p>
           <div
-            className="flex content-background flex-col flex-space-around"
+            className={[
+              "flex",
+              style["content-background"],
+              "flex-col",
+              "flex-space-around",
+            ].join(" ")}
             style={{ padding: "5% 8%" }}
           >
             {data.data.map((item, index) => {
@@ -373,13 +391,15 @@ class SurveyItem extends React.Component {
     const iconPath = this.props.iconPath;
     return (
       <div className="flex-row flex-center">
-        <div className="home-icon flex-col flex-center">
+        <div
+          className={[style["home-icon"], "flex-col", "flex-center"].join(" ")}
+        >
           <i className={`font-large iconfont ${iconPath}`} />
         </div>
         <div className="flex2" style={{ color: "#ccc" }}>
           <p>{data.name}</p>
         </div>
-        <div className="flex title-color">
+        <div className={["flex", style["title-color"]].join(" ")}>
           <p>{data.value}</p>
         </div>
       </div>
@@ -394,10 +414,24 @@ class Status extends React.Component {
     if (data.hasOwnProperty("data")) {
       return (
         <div className="flex flex-col" style={{ marginBottom: "10px" }}>
-          <p className="title-background font-small title-color blue-border">
+          <p
+            className={[
+              style["title-background"],
+              "font-small",
+              style["title-color"],
+              style["blue-border"],
+            ].join(" ")}
+          >
             {data.title}
           </p>
-          <div className="flex content-background flex-row flex-center">
+          <div
+            className={[
+              "flex",
+              style["content-background"],
+              "flex-row",
+              "flex-center",
+            ].join(" ")}
+          >
             <div id="myChart1" className="charts flex" />
             <div className="flex">
               {data.data.map((item, i) => {
@@ -440,10 +474,17 @@ class Count extends React.Component {
     if (data.hasOwnProperty("series")) {
       return (
         <div className="flex flex-col">
-          <p className="title-background font-small title-color blue-border">
+          <p
+            className={[
+              style["title-background"],
+              "font-small",
+              style["title-color"],
+              style["blue-border"],
+            ].join(" ")}
+          >
             {data.title}
           </p>
-          <div className="flex content-background">
+          <div className={["flex", style["content-background"]].join(" ")}>
             <div id="myChart2" className="charts" />
           </div>
         </div>

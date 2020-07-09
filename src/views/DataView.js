@@ -18,6 +18,8 @@ import "echarts/lib/chart/radar";
 import "echarts/lib/component/tooltip";
 import "echarts/lib/component/title";
 import "echarts/lib/component/legend";
+// 引入地图
+import "echarts/map/js/china";
 
 import "../http/http";
 import RightBar from "../components/rightBar";
@@ -428,6 +430,69 @@ class DataView extends React.Component {
       ],
     });
 
+    // 地图
+    var myChart7 = echarts.init(document.getElementById("chinaMap"));
+    myChart7.setOption({
+      backgroundColor: "rgba(0,0,0,0)",
+      title: {},
+      tooltip: {
+        trigger: "item",
+        formatter: (params) => {
+          if (params.name !== "") {
+            var res = params.name + "<br/>";
+            if (params.data) {
+              var arrays = params.data.value;
+              for (var i = 0; i < arrays.length; i++) {
+                res +=
+                  arrays[i].name +
+                  " : " +
+                  arrays[i].value +
+                  arrays[i].unit +
+                  "<br/>";
+              }
+              return res;
+            } else {
+              for (var j = 0; j < this.state.arr.length; j++) {
+                res +=
+                  this.state.arr[j].name +
+                  " : 0" +
+                  this.state.arr[j].unit +
+                  "<br/>";
+              }
+              return res;
+            }
+          }
+        },
+        backgroundColor: "rgba(255,255,255,0.8)",
+        textStyle: {
+          color: "black",
+        },
+        borderColor: "#4594EC",
+        borderWidth: 1,
+      },
+      series: {
+        map: "china",
+        name: "数据",
+        type: "map",
+        roam: false,
+        itemStyle: {
+          normal: {
+            areaColor: "#7DB5EC",
+            borderColor: "#fff",
+          },
+          emphasis: {
+            label: {
+              color: "#666",
+              show: true,
+            },
+            areaColor: "#A4ECBA",
+          },
+        },
+        data: this.state.myData,
+        center: ["50%", "50%"],
+      },
+    });
+
     setTimeout(function () {
       window.onresize = () => {
         myChart1.resize();
@@ -436,6 +501,7 @@ class DataView extends React.Component {
         myChart4.resize();
         myChart5.resize();
         myChart6.resize();
+        myChart7.resize();
       };
     }, 200);
   }
@@ -464,6 +530,21 @@ class DataView extends React.Component {
         "#E7BCF3",
         "#8377EA",
       ],
+      myData: [
+        {
+          name: "杭州市",
+          value: [
+            { name: "装机数量", value: "126", unit: "台" },
+            { name: "装机容量", value: "1.3", unit: "兆瓦" },
+            { name: "完成进度", value: "98.6", unit: "%" },
+          ],
+        },
+      ],
+      arr: [
+        { name: "装机数量", value: "0", unit: "台" },
+        { name: "装机容量", value: "0", unit: "兆瓦" },
+        { name: "完成进度", value: "0", unit: "%" },
+      ],
     };
   }
 
@@ -490,9 +571,7 @@ class DataView extends React.Component {
           </div>
 
           {/* 中 */}
-          <div>
-            <Map />
-          </div>
+          <Map />
 
           {/* 右 */}
           {/* 上 */}
@@ -595,7 +674,11 @@ class Box extends React.Component {
 
 class Map extends React.Component {
   render() {
-    return <div className="map">Map</div>;
+    return (
+      <div className="map" id="chinaMap">
+        Map
+      </div>
+    );
   }
 }
 

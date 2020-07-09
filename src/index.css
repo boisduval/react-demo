@@ -133,6 +133,77 @@ a:visited {
   height: 100%;
 }
 
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+#chinaMap {
+  height: 100%;
+  width: 100%;
+}
+
+.ant-cascader-input.ant-input {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.ant-cascader-picker {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.ant-input {
+  border: 1px solid #31c5df !important;
+  color: #31c5df !important;
+}
+
+.ant-cascader-picker-label,
+.ant-cascader-picker {
+  color: #31c5df !important;
+}
+
+.ant-cascader-menus {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+.ant-cascader-menu {
+  border-right: 1px solid rgba(204, 204, 204, 0.4) !important;
+}
+.ant-cascader-menu:last-child {
+  border-right: none !important;
+}
+
+.ant-cascader-picker-arrow {
+  color: #666 !important;
+}
+
+.ant-cascader-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
+.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #31c5df !important;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #31c5df !important;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #31c5df !important;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #31c5df !important;
+}
+
 /* 字体大小 */
 @media screen and (max-width: 1200px) {
   .font-head {
